@@ -15,8 +15,6 @@ After the workshop, you will be able to:
 - Appreciate how Retrieval Augmented Generation (RAG) helps in providing corporate-only information without information breach
 - Design complex decision automation flow
 
-![image (10)](https://media.github.ibm.com/user/449643/files/d7ca1348-1fba-4be0-b812-22c342f2fb9d)
-
 <div align="center">
   <img src="https://github.com/user-attachments/assets/fe9d90e4-33f9-4e1e-90e6-e85c9d625f08" alt="Updated Image" width="500" height="280">
 </div>
@@ -29,7 +27,6 @@ Actual workshop timings and duration are subject to change.
 - All guides can be found in the "workshop content" folder. The guides detail the step-by-step process required to build skills, skill flows and automation.
 - If any skills or skills flow requires connection, connection details are available in the "Skill Connection Details" file or being provided to you during the workshop.
 
-
-<img width="937" alt="Screenshot 2024-07-17 at 3 55 54 PM" src="https://media.github.ibm.com/user/446708/files/5d6ffaf8-96f7-4ae3-a171-96db461a3a09">
-
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/dc08219e-9d26-4127-9a8c-2512ef015655" alt="Updated Image" width="500" height="280">
+</div>
