@@ -1,6 +1,12 @@
 <div align="center">
   <img src="https://media.github.ibm.com/user/449643/files/c36efd0d-8cff-42fd-8151-63683a88505d" alt="64590951c19e76264ecddfbc_Product-key-image" width="500" height="280">
 </div>
+![image](https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89)
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89" alt="Updated Image" width="500" height="280">
+</div>
+
 
 ### Introduction
 IBM watsonx Orchestrate uses natural language processing and Generative AI to draw from a catalog of basic and advanced skills to execute on customer, employee, and knowledge worker requests, and perform complex tasks on their behalf.
