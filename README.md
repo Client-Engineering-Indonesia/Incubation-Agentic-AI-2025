@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89" alt="Updated Image" width="400" height="280">
+  <img src="https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89" alt="Updated Image" width="500" height="224">
 </div>
-
 
 ### Introduction
 IBM watsonx Orchestrate uses natural language processing and Generative AI to draw from a catalog of basic and advanced skills to execute on customer, employee, and knowledge worker requests, and perform complex tasks on their behalf.
+
 ### Digital Labour Workshop
 This workshop aims to introduce automations to organisational workflows using [watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate).<br>
 
@@ -28,5 +28,5 @@ Actual workshop timings and duration are subject to change.
 - If any skills or skills flow requires connection, connection details are available in the "Skill Connection Details" file or being provided to you during the workshop.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/dc08219e-9d26-4127-9a8c-2512ef015655" alt="Updated Image" width="500" height="280">
+  <img src="https://github.com/user-attachments/assets/dc08219e-9d26-4127-9a8c-2512ef015655" alt="Updated Image" width="937" height="480">
 </div>
