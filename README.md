@@ -1,9 +1,4 @@
 <div align="center">
-  <img src="https://media.github.ibm.com/user/449643/files/c36efd0d-8cff-42fd-8151-63683a88505d" alt="64590951c19e76264ecddfbc_Product-key-image" width="500" height="280">
-</div>
-![image](https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89)
-
-<div align="center">
   <img src="https://github.com/user-attachments/assets/73d75627-a774-4a00-9338-cc8f471abb89" alt="Updated Image" width="500" height="280">
 </div>
 
@@ -21,6 +16,11 @@ After the workshop, you will be able to:
 - Design complex decision automation flow
 
 ![image (10)](https://media.github.ibm.com/user/449643/files/d7ca1348-1fba-4be0-b812-22c342f2fb9d)
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/fe9d90e4-33f9-4e1e-90e6-e85c9d625f08" alt="Updated Image" width="500" height="280">
+</div>
+
 #### Disclaimer:
 Please note that the above mentioned agenda serves as a reference and may not reflect the exact timing or duration of the workshop.
 Actual workshop timings and duration are subject to change.
