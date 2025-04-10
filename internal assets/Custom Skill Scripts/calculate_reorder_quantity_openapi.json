@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Calculate Reorder Quantity",
+      "description": "API that takes historic sales and forecasts to calculate an optimal reorder quantity",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://calculate-reorder-quantity.1soswfjkmeox.us-south.codeengine.appdomain.cloud/",
+        "description": "Deplopment server"
+      }
+    ],
+    "security": [
+      {
+          "basicAuth": []
+      }
+  ],
+    "paths": {
+      "/calculate-reorder-quantity": {
+        "post": {
+          "summary": "Optimal Reorder Quantity",
+          "description": "API that takes historic sales and forecasts to calculate an optimal reorder quantity",
+          "operationId": "reorderQuantity",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReorderRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful execution",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ReorderResponse"
+                }
+              }
+            }
+        },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string",
+                        "description": "Error message."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+          "basicAuth": {
+              "type": "http",
+              "scheme": "basic"
+          }
+        },
+      "schemas":{
+        "ReorderRequest":{
+          "type": "object",
+          "properties": {
+            "current_inventory": {
+              "type": "number",
+              "description": "Current Inventory"
+            },
+            "historic_data":{
+                "type":"integer",
+                "description":"Quantity sold last month"
+            },
+            "forecast":{
+                "type":"integer",
+                "description":"Forecast Quantity next month"
+            }
+          },
+          "required": ["current_inventory","historic_data","forecast"]
+        },
+      "ReorderResponse": {
+          "type": "object",
+          "properties": {
+            "reorder_quantity": {
+              "type": "integer"
+            },
+            "reasoning":{
+                "type":"string"
+            }
+          },
+          "required": ["reorder_quantity","reasoning"]
+        }
+
+
+      }
+      }
+    }
+  

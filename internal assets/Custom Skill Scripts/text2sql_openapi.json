@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Get Historic Sales",
+      "description": "API that converts natural language queries into SQL and executes them on a SQLite database.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://text2sql-crewai.1soswfjkmeox.us-south.codeengine.appdomain.cloud/",
+        "description": "Deplopment server"
+      }
+    ],
+    "security": [
+      {
+          "basicAuth": []
+      }
+  ],
+    "paths": {
+      "/query": {
+        "post": {
+          "summary": "Text2SQL with Crew AI",
+          "description": "Takes a natural language query, converts it into an SQL query, executes it, and returns the results.",
+          "operationId": "processQuery",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Text2SQLRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful query execution",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Text2SQLResponse"
+                }
+              }
+            }
+        },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string",
+                        "description": "Error message."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+          "basicAuth": {
+              "type": "http",
+              "scheme": "basic"
+          }
+        },
+      "schemas":{
+        "Text2SQLRequest":{
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "The natural language query to convert into SQL."
+            }
+          },
+          "required": ["query"]
+        },
+      "Text2SQLResponse": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "array",
+              "items": {
+                    "type": "object",
+                    "properties": {
+                      "month_year": { "type": "string" },
+                      "total_figure": { "type": "number" }
+                    },
+                    "required": ["month_year", "total_figure"]
+              }
+            }
+          },
+          "required": ["result"]
+        }
+
+
+      }
+      }
+    }
+  

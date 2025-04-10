@@ -1,0 +1,172 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Enhance Skill Search",
+    "description": "Enhance Skill Search by enhancing description and phrases",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://enhance-skill-search.1soswfjkmeox.us-south.codeengine.appdomain.cloud/",
+      "description": "Deployment server"
+    }
+  ],
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "paths": {
+    "/enhance-description": {
+      "post": {
+        "summary": "Enhance Description",
+        "description": "Takes an OpenAPI specification in JSON format, and summarises it.",
+        "operationId": "summariseOpenAPI",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenAPIRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Summarised description for OpenAPI Specification.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnhancedDescriptionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or processing error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enhance-phrases":{
+      "post": {
+        "summary": "Enhance Phrases",
+        "description": "Takes an OpenAPI specification in JSON format, and generates phrases.",
+        "operationId": "enhanceOpenAPI",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenAPIRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Relevant phrases for OpenAPI Specification.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnhancedPhrasesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or processing error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessingError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "OpenAPIRequest": {
+        "type": "object",
+        "properties": {
+          "openapi": {
+            "type": "string",
+            "description": "The OpenAPI specification in JSON format."
+          },
+          "language":{
+            "type":"string",
+            "description":"Currently supports 8 languages: English, German, French, Italian, Portuguese, Hindi, Spanish, and Thai.",
+            "default":"English"
+          }
+        },
+        "required": ["openapi"]
+      },
+      "EnhancedDescriptionResponse": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "array",
+            "items":{
+              "type":"object",
+              "properties":{
+                "skill":{"type":"string"},
+                "enhanced_description":{"type":"string"}
+              },
+              "required":["skill","enhanced_description"]
+            }
+          }
+        },
+        "required": ["description"]
+      },
+      "EnhancedPhrasesResponse": {
+        "type": "object",
+        "properties": {
+          "phrases": {
+            "type": "array",
+            "items":{
+              "type":"object",
+              "properties":{
+                "skill":{"type":"string"},
+                "enhanced_phrases":{
+                  "type":"array",
+                  "items":{
+                    "type":"string"
+                  }
+                }
+              },
+              "required":["skill","enhanced_phrases"]
+            }
+          }
+        },
+        "required": ["phrases"]
+      },
+      "ProcessingError":{
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message."
+          }
+        }
+      }
+    }
+  }
+}

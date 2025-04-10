@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Salesforce Custom Skills Version2",
+      "description": "An API for managing orders and price books in Salesforce.",
+      "version": "1.0.0"
+    },
+    "tags": [
+      {
+        "name": "Salesforce",
+        "description": "Operations related to Salesforce orders and price books"
+      }
+    ],
+    "servers": [
+        {
+            "url": "https://salesforce-custom-application-v2.1soswfjkmeox.us-south.codeengine.appdomain.cloud/",
+            "description": "Development server"
+        }
+    ],
+    "paths": {
+      "/create_order_item/": {
+        "post": {
+          "parameters": [
+            {
+              "name": "order",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Order ID"
+              }
+            },
+            {
+              "name": "pricebook_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Pricebook ID"
+              }
+            },
+            {
+              "name": "quantity",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "Quantity of items"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Order item created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrderItemResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Create an order item in salesforce",
+          "operationId": "createOrderItem",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/pricebooks": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "List of price books",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PriceBooksResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Fetch all price books from salesforce",
+          "operationId": "fetchPriceBooks",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/get_all_orders": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "List of all orders",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrdersResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Get all orders from salesforce",
+          "operationId": "getAllOrders",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/create_orders": {
+        "get": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Account ID associated with the order"
+              }
+            },
+            {
+              "name": "date",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "date",
+                "description": "Effective date of the order"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": "Draft",
+                "description": "Status of the order"
+              }
+            },
+            {
+              "name": "Pricebook2Id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Pricebook ID associated with the account"
+              }
+            }
+          ],
+          "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewOrderResponse"
+                                }
+                            }
+                        },
+                        "description": "Order created successfully"
+                    }
+                },
+          "summary": "Create a new order in Salesforce",
+          "operationId": "createOrder",
+          "tags": ["Salesforce"]
+        }
+      }
+    },
+    "components": {"securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        },
+      "schemas": {
+        "OrderItemResponse": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Response message"
+            },
+            "data": {
+              "type": "object",
+              "description": "Order item creation details"
+            }
+          }
+        },
+        "PriceBooksResponse": {
+          "type": "object",
+          "properties": {
+            "price_books": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Product Name": { "type": "string" },
+                  "Unit Price": { "type": "number" },
+                  "Pricebook ID": { "type": "string" },
+                  "Pricebook Name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "OrdersResponse": {
+          "type": "object",
+          "properties": {
+            "order_result": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Id": { "type": "string" },
+                  "OrderNumber": { "type": "string" },
+                  "TotalAmount": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "NewOrderResponse": {
+          "type": "object",
+          "properties": {
+              "order_id": {
+                  "type": "string",
+                  "description": "ID of the newly created order"
+              }
+          }
+      }
+      }
+    }
+  }
+  
