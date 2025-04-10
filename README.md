@@ -28,5 +28,6 @@ Actual workshop timings and duration are subject to change.
 - If any skills or skills flow requires connection, connection details are available in the "Skill Connection Details" file or will be provided to you during the workshop.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9e958e5-5449-46e1-b37d-db54334bfbec" alt="Updated Image" width="937" height="480">
+  <img src="https://github.com/user-attachments/assets/d9dd03d1-63a0-4591-aa09-f8e40ab94c3d" alt="Updated Image" width="937" height="480">
 </div>
+
