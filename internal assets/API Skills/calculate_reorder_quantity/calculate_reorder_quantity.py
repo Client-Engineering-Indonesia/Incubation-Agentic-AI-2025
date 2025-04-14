@@ -6,10 +6,9 @@ from crewai import Agent, Task, Crew, Process
 from crewai import LLM
 import os
 import json
+import re
 
 # Load environment variables
-load_dotenv()
-
 load_dotenv()
 
 app = FastAPI()
@@ -29,8 +28,10 @@ class ReorderQuantityRequest(BaseModel):
 
 # WatsonX LLM Initialization
 llm = LLM(
-    api_key=os.environ["WATSONX_API_KEY"],
-    model=os.environ["MODEL_ID"],
+    api_key=os.getenv("WATSONX_API_KEY"),
+    model=os.getenv("MODEL_ID"),
+    project_id=os.getenv("WATSONX_PROJECT_ID"),
+    url=os.getenv("WATSONX_URL"),
     params={
         "decoding_method": "greedy",
         "max_new_tokens": 500,
@@ -44,10 +45,11 @@ llm = LLM(
 def create_inventory_agent():
     return Agent(
         role="Inventory Optimizer",
-        goal="Determine optimal reorder quantity to maintain ideal stock levels.",
-        backstory="""You are an AI-powered inventory manager. Your goal is to calculate 
-        the reorder quantity using past trends and forecasted demand. Avoid stock shortages 
-        while preventing excess inventory. Explain your decision based on data patterns.""",
+        goal="Menentukan jumlah pemesanan ulang yang optimal untuk mempertahankan tingkat stok yang ideal.",
+        backstory="""Anda adalah manajer inventaris yang didukung AI. 
+        Sasaran Anda adalah menghitung jumlah pemesanan ulang menggunakan tren masa lalu dan perkiraan permintaan. 
+        Hindari kekurangan stok sekaligus mencegah kelebihan inventaris. 
+        Jelaskan keputusan Anda berdasarkan pola data.""",
         llm=llm,
         allow_delegation=False
     )
@@ -56,30 +58,33 @@ def create_inventory_agent():
 def create_inventory_task(agent, current_inventory, historic_data, forecast):
     return Task(
         description=f"""
-Given the following data:
-- Current Inventory: {current_inventory}
-- Quantity sold previous month: {historic_data}
-- Forecasted Quantity for next month: {forecast}
+Diberikan data sebagai berikut:
+- Persediaan terkini: {current_inventory}
+- Jumlah presediaan terjual pada bulan lalu: {historic_data}
+- Prediksi persediaan terjuanl di bulan depan: {forecast}
 
-Determine the optimal reorder quantity to ensure sufficient stock while minimizing excess inventory.
-Instructions for calculating the optimal reorder quantity:
-1. Shortfall calculation.
-    - Shortfall = Forecast - Inventory
-2. Saftey stock calculation
-    - If shortfall <= historic sales:
-        Saftety Stock = 10% of historic sales
-        Reorder Quantity = Shortfall + Safety Stock
-    - If shortfall > historic sales:
-        Reorder Quantity = Shortfall
+Tentukan jumlah pemesanan ulang yang optimal untuk memastikan stok yang cukup sambil meminimalkan kelebihan inventaris.
+Petunjuk untuk menghitung jumlah pemesanan ulang yang optimal:
 
-Provide a structured response in JSON format with:
-1. "reorder_quantity": An integer representing the reorder quantity.
-2. "reasoning": A detailed explanation for why this reorder quantity was chosen.
+1. Perhitungan kekurangan.
+- Kekurangan = Perkiraan - Inventaris
+
+2. Perhitungan stok pengaman
+- Jika kekurangan <= penjualan historis:
+  Stok Pengaman = 10% dari penjualan historis
+  Jumlah Pemesanan Ulang = Kekurangan + Stok Pengaman
+- Jika kekurangan > penjualan historis:
+  Jumlah Pemesanan Ulang = Kekurangan
+
+Berikan respons terstruktur dalam format JSON dengan:
+
+1. "reorder_quantity": Bilangan bulat yang mewakili jumlah pemesanan ulang.
+2. "reasoning": Penjelasan terperinci tentang mengapa jumlah pemesanan ulang ini dipilih.
         """,
-        expected_output='''A JSON object: 
+        expected_output='''
         {
-          "reorder_quantity": <integer>,
-          "reasoning": "<string explanation>"
+          "reorder_quantity": <hasil dalam bentuk bilangan bulat>,
+          "reasoning": "<penjelasan secara sistematis dalam bentuk string>"
         }''',
         agent=agent
     )
@@ -101,6 +106,13 @@ def calculate_reorder_quantity(request:ReorderQuantityRequest):
     )
 
     response = str(inventory_crew.kickoff()).strip()
-    response = json.loads(response)
-    return {"reorder_quantity":response['reorder_quantity'],
-            "reasoning":response['reasoning']}
+    print("response", response)
+
+    #match = re.search(r'json\s*(\{.*?\})\s*', response, re.DOTALL)
+
+    #json_str = match.group(0)
+    
+    data = json.loads(response)
+
+    return {"reorder_quantity":data['reorder_quantity'],
+            "reasoning":data['reasoning']}
