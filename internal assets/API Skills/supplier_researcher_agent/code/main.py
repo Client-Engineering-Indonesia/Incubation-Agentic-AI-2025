@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from agent_lab import research_suppliers
+from agent_lab import *
 
 app = FastAPI()
 
@@ -15,6 +15,14 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Salesforce API"}
+
+@app.get("/price-book")
+async def price_book():
+    return get_all_price_book()
 
 @app.get("/researchsuppliers/")
 async def supplier_research(query: str):

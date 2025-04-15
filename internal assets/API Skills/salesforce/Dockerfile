@@ -15,4 +15,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 #This is if you using uvicorn with fast API
-CMD ["uvicorn", "custom_salesforce:app", "--host", "0.0.0.0", "--port", "8080"]
+# CMD ["uvicorn", "custom_salesforce:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

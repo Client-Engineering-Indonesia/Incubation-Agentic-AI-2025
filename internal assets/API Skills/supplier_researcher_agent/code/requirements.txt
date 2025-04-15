@@ -4,3 +4,4 @@ dotenv
 requests==2.31.0
 uvicorn
 Salesforce
+pydantic
