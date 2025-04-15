@@ -12,9 +12,7 @@ COPY ./requirements.txt /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install curl for HTTP request-based liveness check
+EXPOSE 8080
 
-# Run app.py when the container launches
-# CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "main:app"]
-# CMD ["fastapi", "run", "main.py", "--port", "8080"]
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+#This is if you using uvicorn with fast API
+CMD ["uvicorn", "custom_salesforce:app", "--host", "0.0.0.0", "--port", "8080"]
