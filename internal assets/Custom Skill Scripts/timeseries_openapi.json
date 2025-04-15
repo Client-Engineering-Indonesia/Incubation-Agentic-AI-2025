@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Time Series Forecast Auto AI",
+      "description": "API for fetching predictions using IBM WatsonX",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://forecast-auto-ai.1soswfjkmeox.us-south.codeengine.appdomain.cloud/",
+        "description": "Deployment server"
+      }
+    ],
+    "security": [
+        {
+            "basicAuth": []
+        }
+    ],
+    "paths": {
+      "/predict": {
+        "post": {
+          "summary": "Time Series Forecasting",
+          "description": "Retrieves predictions from IBM WatsonX using provided input data.",
+          "operationId": "predict",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "forecast_window": {
+                      "type": "integer",
+                      "description": "Forecast window",
+                      "default":3,
+                      "maximum": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response with predictions",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "predictions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "sales": {
+                              "type": "number",
+                              "format": "float"
+                            },
+                            "quantity": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized - Invalid API key or authentication token"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "basicAuth": {
+            "type": "http",
+            "scheme": "basic"
+        }
+      }
+    }
+  }
+  
