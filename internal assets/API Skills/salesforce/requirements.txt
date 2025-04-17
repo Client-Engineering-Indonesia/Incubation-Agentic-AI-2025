@@ -1,6 +1,6 @@
 fastapi 
 ibm-watson-machine-learning
 dotenv
-requests==2.31.0
+requests
 uvicorn
 Salesforce
