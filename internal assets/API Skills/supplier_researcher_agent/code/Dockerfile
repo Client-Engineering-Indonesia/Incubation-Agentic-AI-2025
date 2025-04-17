@@ -1,5 +1,4 @@
-FROM --platform=linux/amd64 python:3.9
-
+FROM --platform=linux/amd64 python:3.11-slim
 
 # Copy your application code
 COPY . /src
