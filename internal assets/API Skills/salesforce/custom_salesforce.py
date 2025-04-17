@@ -4,10 +4,10 @@ import os
 
 load_dotenv()
 
-username = os.environ.get('SF_USERNAME', '')
+username = os.getenv('SF_USERNAME', '')
 print(username)
-password = os.environ.get('SF_PASSWORD', '')
-token = os.environ.get('SF_TOKEN', '')
+password = os.getenv('SF_PASSWORD', '')
+token = os.getenv('SF_TOKEN', '')
 
 
 #######SALESFORCE CREDENTIALS########
@@ -30,9 +30,7 @@ def get_all_price_book():
         pricebook_name = pb_result["records"][0]["Name"] if pb_result["records"] else "Unknown"
 
         products.append({
-            "Product Name": row["Name"],
-            "Unit Price": row["UnitPrice"],
-            "Pricebook ID": row["Pricebook2Id"],
+            "products_data": row,
             "Pricebook Name": pricebook_name
         })
     return products
@@ -43,12 +41,21 @@ def get_all_orders():
     order_query = """SELECT Id, OrderNumber, TotalAmount from Order"""
     order_result = sf.query(order_query)
 
-def create_order(account_id, date, status="Draft"):
+def create_order(account_id, date, Pricebook2Id, status="Draft"):
+    order_result = sf.Order.create({
+        'AccountId': account_id,  # Account associated with the order, eg '001IU00002pmnF0YAI'
+        'EffectiveDate': date,  # Effective date of the order, eg '2025-03-10'
+        'Status': status,  # You can set it to 'Draft' initially,
+        'Pricebook2Id': Pricebook2Id,
+    })
+
     return sf.Order.create({
-    'AccountId': account_id,  # Account associated with the order, eg '001IU00002pmnF0YAI'
-    'EffectiveDate': date,  # Effective date of the order, eg '2025-03-10'
-    'Status': status,  # You can set it to 'Draft' initially
-})
+        'AccountId': account_id,  # Account associated with the order, eg '001IU00002pmnF0YAI'
+        'EffectiveDate': date,  # Effective date of the order, eg '2025-03-10'
+        'Status': status,  # You can set it to 'Draft' initially,
+        'Pricebook2Id': Pricebook2Id,
+    })
+
 
 def create_order_item(order_id, product_id, unit_price, pricebookEntry_id, quantity):
     #order: use get order skill from wxo

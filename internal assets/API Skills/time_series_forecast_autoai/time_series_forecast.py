@@ -37,14 +37,13 @@ def predict(request: ModelRequest):
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {token}"}
     
     payload = {
-        "input_data": [
-            {"id": "observations", "values": []},
-            {"id": "supporting_features", "values": []},
-        ]
-    }
+        "input_data": [{
+            "fields": ["forecast_window"],
+            "values": [[request.forecast_window]]
+    }]}
     
     response = requests.post(
-        os.getenv("WATSONX_URL"),
+        os.getenv("WX_FORECAST_URL"),
         json=payload,
         headers=headers,
     )
@@ -54,19 +53,6 @@ def predict(request: ModelRequest):
     
     predictions = response.json()
 
-    data = [
-    {"quantity": round(item[0][0]), "sales": round(item[0][1],2)}
-    for item in predictions['predictions'][0]['values']
-    ]
-
-    df = pd.DataFrame(data)
-
-    if request.forecast_window==1:
-        df=df.head(2)
-
-    if request.forecast_window==1:
-        df=df.head(1)
-    
-    return {"predictions":df.to_dict(orient='records')}
+    return predictions
 
 
