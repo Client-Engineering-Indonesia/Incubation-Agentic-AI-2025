@@ -26,12 +26,13 @@ password = os.getenv('SF_PASSWORD', '')
 token = os.getenv('SF_TOKEN', '')
 
 class OrderRequest(BaseModel):
-    account_id: str
-    date: str
-    status: str 
-    Pricebook2Id: str
-    Product2Id: str
-    Quantity: float
+    account_id: str = '001IU00002oGjMKYA0'
+    date: str = '2025-04-10'
+    status: str = 'Draft'
+    Pricebook2Id: str = '01sIU00000F3uJFYAZ'
+    Product2Id: str = '01uIU00000AWHg5YAH'
+    Quantity: float = 5
+
 
 
 #######SALESFORCE CREDENTIALS########
@@ -144,12 +145,12 @@ def create_product_in_order(request: OrderRequest):
     price = get_price_by_id(request.Product2Id)[0]["products_data"]["UnitPrice"]
     #print("price", price)
 
-    #order_id = order["id"]
-    order_id = '801IU000005RLxsYAG'
+    order_id = order["id"]
+    #order_id = '801IU000005RLxsYAG'
 
     order_item = create_order_item_sf(
         order_id, 
-        request.Product2Id, 
+        request.Product2Id, # by default 01uIU00000AWHg5YAH
         request.Quantity, 
         price
     ) 
