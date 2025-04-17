@@ -28,8 +28,11 @@ app.add_middleware(
 
 # Initialize LLM
 llm = LLM(
-    api_key=os.environ["WATSONX_API_KEY"],
-    model=os.environ["MODEL_ID"],
+    api_key = os.getenv("WATSONX_API_KEY", None),
+    model= "watsonx/meta-llama/llama-4-maverick-17b-128e-instruct-fp8", 
+    # "meta-llama/llama-3-3-70b-instruct", "watsonx/meta-llama/llama-4-maverick-17b-128e-instruct-fp8", "meta-llama/llama-3-3-70b-instruct",
+    #llama-4-maverick-17b-128e-instruct-fp8 llama-4-scout-17b-16e-instruct meta-llama/llama-3-3-70b-instruct
+#'meta-llama/llama-4-maverick-17b-128e-instruct-fp8', 'meta-llama/llama-4-scout-17b-16e-instruct', 
     params={
         "decoding_method": "greedy",
         "max_new_tokens": 15000,
@@ -46,9 +49,7 @@ def create_query_generator():
     return Agent(
         role="SQL Query Generator",
         goal="Convert natural language queries into optimized SQL queries",
-        backstory="""You are an expert SQL developer specializing in converting natural 
-        language requests into efficient SQL queries. You understand complex data relationships 
-        and can create queries involving aggregations, grouping, and date operations. Keep the columns 'month_year' and 'total_figure' consistent.""",
+        backstory="""Kamu adalah seorang developer SQL yang mempunyai keahlian untuk merubah pertanyaan user menjadi suatu kueri SQL yang efisien. Kamu memahami hubungan data yang kompleks dan mampu membuat kueri yang melibatkan agregasi, pengelompokan (grouping), dan operasi tanggal. Selalu gunakan nama kolom 'month_year' dan 'total_figure' secara konsisten.""",
         llm=llm,
         allow_delegation=False
     )
@@ -122,8 +123,13 @@ def create_generation_task(agent, query):
         agent=agent
     )
 
-@app.post("/query")
-async def process_query(request:QueryRequest):
+import re
+def clean_sql(sql: str) -> str:
+    # Remove triple backticks and optional "sql" label
+    return re.sub(r"```(?:sql)?|```", "", sql).strip()
+
+@app.post("/query") 
+async def process_query(request: QueryRequest):
     try:
         query_generator = create_query_generator()
         generation_task = create_generation_task(query_generator, request.query)
@@ -136,8 +142,8 @@ async def process_query(request:QueryRequest):
         )
         
         sql_query = str(generation_crew.kickoff()).strip()
+        sql_query = clean_sql(sql_query)  # ← sanitize the LLM output
         
-        # Execute the query
         with get_db_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(sql_query)
@@ -145,10 +151,7 @@ async def process_query(request:QueryRequest):
             results = cursor.fetchall()
             formatted_results = [dict(zip(columns, row)) for row in results]
 
-        
-        return {
-            "result": formatted_results
-        }
-        
+        return {"result": formatted_results}
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

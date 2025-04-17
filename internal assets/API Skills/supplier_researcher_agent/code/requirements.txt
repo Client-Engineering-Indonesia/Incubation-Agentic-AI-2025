@@ -5,3 +5,4 @@ requests==2.31.0
 uvicorn
 Salesforce
 pydantic
+ibm_watsonx_ai==1.2.10
