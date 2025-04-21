@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Hitung Jumlah Pembelian Ulang",
+      "description": "API yang melihat jumlah penjualan historis dan prakiraan penjualan masa depan untuk menghitung jumlah produk yang harus dipesan.",
+      "version": "1.0.0",
+      "x-ibm-application-id": "calculate-restock-app",
+      "x-ibm-application-name": "Hitung Jumlah Restok"
+    },
+    "servers": [
+      {
+        "url": "https://bahasa-reorder-quantity.1tzeky9wts20.us-south.codeengine.appdomain.cloud/",
+        "description": "API Bahasa Indonesia"
+      }
+    ],
+    "security": [
+      {
+          "basicAuth": []
+      }
+  ],
+    "paths": {  
+      "/calculate-reorder-quantity": {
+        "post": {
+          "summary": "Hitung Jumlah Restok",
+          "description": "API untuk menghitung jumlah restok berdasarkan penjualan masa lalu dan prakiraan pembeliaan di masa depan.",
+          "operationId": "reorderQty",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReorderRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Proses berhasil.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ReorderResponse"
+                }
+              }
+            }
+        },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string",
+                        "description": "Error message."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+          "basicAuth": {
+              "type": "http",
+              "scheme": "basic"
+          }
+        },
+      "schemas":{
+        "ReorderRequest":{
+          "type": "object",
+          "properties": {
+            "current_inventory": {
+              "type": "number",
+              "description": "Stok produk yang ada saat ini."
+            },
+            "historic_data":{
+                "type":"integer",
+                "description":"Penjualan produk di bulan lalu."
+            },
+            "forecast":{
+                "type":"integer",
+                "description":"Prediksi jumlah penjualan bulan depan."
+            }
+          },
+          "required": ["current_inventory","historic_data","forecast"]
+        },
+      "ReorderResponse": {
+          "type": "object",
+          "properties": {
+            "reorder_quantity": {
+              "type": "integer"
+            },
+            "reasoning":{
+                "type":"string"
+            }
+          },
+          "required": ["reorder_quantity","reasoning"]
+        }
+      }
+      }
+    }
+  

@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Salesforce Custom",
+      "description": "API untuk mengelola pesanan dan buku harga di Salesforce.",
+      "version": "1.0.0"
+    },
+    "tags": [
+      {
+        "name": "Salesforce Custom",
+        "description": "Operasi terkait pesanan dan buku harga yang ada di Salesforce."
+      }
+    ],
+    "servers": [
+        {
+            "url": "https://bahasa-salesforce.1tzeky9wts20.us-south.codeengine.appdomain.cloud/",
+            "description": "API Bahasa Indonesia"
+        }
+    ],
+    "paths": {
+      "/create_order_item/": {
+        "post": {
+          "parameters": [
+            {
+              "name": "order",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Order ID:"
+              }
+            },
+            {
+              "name": "pricebook_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Pricebook ID:"
+              }
+            },
+            {
+              "name": "quantity",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "Quantity of items:"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Order item created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrderItemResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Membuat Order Item baru di Salesforce",
+          "operationId": "createOrderItem",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/pricebooks": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Mengambil daftar seluruh buku harga yang ada di dalam Salesforce",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PriceBooksResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Mengambil semua buku harga dari Salesforce",
+          "operationId": "fetchPriceBooks",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/get_all_orders": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Mengambil semua Pesanan di dalam Salesforce.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrdersResponse"
+                  }
+                }
+              }
+            }
+          },
+          "summary": "Ambil semua pesanan di Salesforce.",
+          "operationId": "getAllOrders",
+          "tags": ["Salesforce"]
+        }
+      },
+      "/create_orders": {
+        "get": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Account ID yang membuat pesanan"
+              }
+            },
+            {
+              "name": "date",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "date",
+                "description": "Tanggal efektif pesanan dibuat"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "default": "Draft",
+                "description": "Status pesanan"
+              }
+            },
+            {
+              "name": "Pricebook2Id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Pricebook ID"
+              }
+            }
+          ],
+          "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewOrderResponse"
+                                }
+                            }
+                        },
+                        "description": "Pesanan telah berhasil dibuat."
+                    }
+                },
+          "summary": "Membuat sebuah Pesanan baru di Salesforce",
+          "operationId": "createOrder",
+          "tags": ["Salesforce"]
+        }
+      }
+    },
+    "components": {"securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        },
+      "schemas": {
+        "OrderItemResponse": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Response message"
+            },
+            "data": {
+              "type": "object",
+              "description": "Order item creation details"
+            }
+          }
+        },
+        "PriceBooksResponse": {
+          "type": "object",
+          "properties": {
+            "price_books": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Product Name": { "type": "string" },
+                  "Unit Price": { "type": "number" },
+                  "Pricebook ID": { "type": "string" },
+                  "Pricebook Name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "OrdersResponse": {
+          "type": "object",
+          "properties": {
+            "order_result": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Id": { "type": "string" },
+                  "OrderNumber": { "type": "string" },
+                  "TotalAmount": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "NewOrderResponse": {
+          "type": "object",
+          "properties": {
+              "order_id": {
+                  "type": "string",
+                  "description": "ID dari pesanan yang baru dibuat."
+              }
+          }
+      }
+      }
+    }
+  }
+  

@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Ambil Data Penjualan dari DB",
+      "description": "API yang mengubah intruksi menjadi SQL query dan menjalankan query tersebut terhadap SQLite database.",
+      "version": "1.0.0",
+      "x-ibm-application-name": "Tanya Database",
+      "x-ibm-skill-type": "imported",
+      "x-ibm-skill-subtype": "public"
+    },
+    "servers": [
+      {
+        "url": "https://bahasa-text2sql-crewai.1tzeky9wts20.us-south.codeengine.appdomain.cloud/",
+        "description": "API Bahasa Indonesia"
+      }
+    ],
+    "security": [
+      {
+          "basicAuth": []
+      }
+  ],
+    "paths": {
+      "/query": {
+        "post": {
+          "summary": "Tanya ke Database",
+          "description": "Menerima pertanyaan dalam bahasa Indonesia, mengubahnya menjadi SQL quey, menjalankan query tersebut, dan mengembalikan hasilnya.",
+          "operationId": "Text2SQL",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Text2SQLRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Proses query database berhasil.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Text2SQLResponse"
+                }
+              }
+            }
+        },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "detail": {
+                        "type": "string",
+                        "description": "Error message."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+          "basicAuth": {
+              "type": "http",
+              "scheme": "basic"
+          }
+        },
+      "schemas":{
+        "Text2SQLRequest":{
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Pertanyaan dari manusia yang akan diubah menjadi SQL Query."
+            }
+          },
+          "required": ["query"]
+        },
+        "Text2SQLResponse": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "array",
+              "items": {
+                    "type": "object",
+                    "properties": {
+                      "month_year": { "type": "string" },
+                      "total_figure": { "type": "integer" }
+                    },
+                    "required": ["month_year", "total_figure"]
+              }
+            }
+          },
+          "required": ["result"]
+        }
+
+
+      }
+      }
+    }
+  

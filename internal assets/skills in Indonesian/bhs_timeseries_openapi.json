@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Prediksi Penjualan",
+      "description": "API untuk meminta prediksi penjualan dengan menggunakan IBM WatsonX",
+      "version": "1.0.0",
+      "x-ibm-application-id": "sales-forecast-app",
+      "x-ibm-application-name": "Prediksi Penjualan"
+    },
+    "servers": [
+      {
+        "url": "https://bahasa-time-series.1tzeky9wts20.us-south.codeengine.appdomain.cloud/",
+        "description": "API Bahasa Indonesia"
+      }
+    ],
+    "security": [
+        {
+            "basicAuth": []
+        }
+    ],
+    "paths": {
+      "/predict": {
+        "post": {
+          "summary": "Prediksi Penjualan",
+          "description": "Mendapatkan data prakiraan atau prediksi penjualan bulan depan untuk produk tertentu.",
+          "operationId": "sales-forecast-app",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "forecast_window": {
+                      "type": "integer",
+                      "description": "Jumlah bulan yang akan diminta prediksi penjualannya. Nilainya dalam bentuk angka, dimana nilai maksimumnya adalah 3.",
+                      "default": 1,
+                      "maximum": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Prediksi berhasil diperoleh dari model AutoAI",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "predictions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "example": ["forecast_sales", "forecast_qty"]
+                            },
+                            "values": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items":{
+                                    "type": "number",
+                                    "format": "float"
+                                  },
+                                  "example": [498549.45, 523252.75, 547956.04]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized - Invalid API key or authentication token"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "basicAuth": {
+            "type": "http",
+            "scheme": "basic"
+        }
+      }
+    }
+  }
+  
