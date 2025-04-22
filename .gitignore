@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
 
 creds/*
+
+.DS_Store
