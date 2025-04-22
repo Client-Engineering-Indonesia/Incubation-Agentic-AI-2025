@@ -1,4 +1,4 @@
-<img width="823" alt="image" src="https://github.com/user-attachments/assets/834c1ded-f58c-4962-9fc8-105227d0f1af" /><img width="903" alt="image" src="https://github.com/user-attachments/assets/95e65e8e-ceab-4934-8828-b75bc688198b" /><img width="1395" alt="image" src="https://github.com/user-attachments/assets/0e33709c-21d8-4c63-b22a-30f759c79daf" /># Using Decision Automation Flow
+# Using Decision Automation Flow
 
 ## Objective
 
