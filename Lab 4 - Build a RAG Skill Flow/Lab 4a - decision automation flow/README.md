@@ -1,4 +1,4 @@
-<img width="1395" alt="image" src="https://github.com/user-attachments/assets/0e33709c-21d8-4c63-b22a-30f759c79daf" /># Using Decision Automation Flow
+<img width="823" alt="image" src="https://github.com/user-attachments/assets/834c1ded-f58c-4962-9fc8-105227d0f1af" /><img width="903" alt="image" src="https://github.com/user-attachments/assets/95e65e8e-ceab-4934-8828-b75bc688198b" /><img width="1395" alt="image" src="https://github.com/user-attachments/assets/0e33709c-21d8-4c63-b22a-30f759c79daf" /># Using Decision Automation Flow
 
 ## Objective
 
@@ -40,7 +40,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 3. Reperform same process on step 2 until you get all variables as image below:
 
-<img width="1411" alt="image" src="https://github.com/user-attachments/assets/25f4d2c9-c99c-4bad-a798-d8b06861b5a9" />
+<img width="1407" alt="image" src="https://github.com/user-attachments/assets/7fe75f4e-a41d-4b9e-a39f-87cb24981e08" />
 
 ## Create decision
 
@@ -56,7 +56,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 <img width="738" alt="image" src="https://github.com/user-attachments/assets/1887a6b4-66c5-4ca3-81ef-322d2f4a3311" />
 
-4. Set category to Decision Flow -> set Name to "Get Reorder Qty" -> click Create button
+4. Set category to Decision Flow -> set Name to "[Your Name]_Get_Reorder_Qty" -> click Create button
 
 <img width="834" alt="image" src="https://github.com/user-attachments/assets/14acc7ed-5988-4868-96ec-4b28869e6ae6" />
 
@@ -80,7 +80,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 <img width="1395" alt="image" src="https://github.com/user-attachments/assets/569de487-9114-4b72-b2ae-f03c3c06b892" />
 
-10. Go back to your workflow -> click Get Reorder Qty Node -> click Define data mapping button
+10. Go back to your workflow -> click [Your Name]_Get_Reorder_Qty Node -> click Define data mapping button
 
 <img width="1332" alt="image" src="https://github.com/user-attachments/assets/75c8ada4-51af-47cc-b97d-a1fe64f8a900" />
 
@@ -102,7 +102,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 ## Create branch
 
-1. Hover your mouse to line between Get Reorder Qty decision and End node -> click + button -> select Branch
+1. Hover your mouse to line between [Your Name]_Get_Reorder_Qty decision and End node -> click + button -> select Branch
 
 <img width="712" alt="image" src="https://github.com/user-attachments/assets/99805868-fc39-4b6b-a358-95889f97cbb0" />
 
@@ -128,32 +128,122 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 <img width="1400" alt="image" src="https://github.com/user-attachments/assets/8c9b07a2-6286-478d-9d6d-13e611a08d43" />
 
+4. Go back to your workflow -> click No Min Order notification node -> click Define data mapping button <img width="300" alt="image" src="https://github.com/user-attachments/assets/4d3ff7cf-987a-4f7f-b94d-e8538e76f6ad" /> -> map jumlah_order variable with ReorderValue
+
+<img width="1226" alt="image" src="https://github.com/user-attachments/assets/c718ec29-eff2-4ae1-b8cf-d8eb796f9cb5" />
+
+5. Go to Output mapping tab -> set generated_text to NoMinOrderMsg -> click OK button
+
+<img width="1232" alt="image" src="https://github.com/user-attachments/assets/2941e7ac-4f4f-46b8-8b56-f5697c44851c" />
+
+
 ## Create salesforce order from skillset 
 
+1. Hover your mouse to line after CheckMinOrder branch -> click + button -> select Assignment
 
-## Prepare the zip file
+<img width="768" alt="image" src="https://github.com/user-attachments/assets/5c9a6b5a-80b1-4830-8b23-c962560aa399" />
 
-For the purpose of this workshop, you will be uploading a copy of a pre-fabricated object. 
+2. Set Name to "Assign Variables" -> click Define data assignments button <img width="314" alt="image" src="https://github.com/user-attachments/assets/5a486c65-89d8-455a-898f-ba8a700ccb74" />
 
-1. Download the project file from here and save to your desktop.
-2. If you are using a shared instance, we will need to ensure our project name does not clash with one another.
-3. Navigate to your desktop, unzip the file and rename the file to [YourName]_Reorder_automation.
-4. Zip up the file again after you’ve renamed.
+<img width="1177" alt="image" src="https://github.com/user-attachments/assets/6007a8f9-571a-4f92-a0f6-2ef1cb771a3f" />
 
+3. Click Add variable button -> select "PriceBookId" and "AccountId" -> set PriceBookId to "01uIU00000AWG47YAH" -> set AccountId to "001IU00002qLOFFYA4" -> click OK button
 
-### * If you are using Macbook, run these steps to rezip the folder:
+<img width="1577" alt="image" src="https://github.com/user-attachments/assets/0527efbe-be8f-424c-8565-91e925d58dc7" />
 
-1. Launch Terminal
-2. Go to directory where your folder is located
-3. Run command below
-```code
-zip -r [YourName]_Reorder_automation.zip [YourName]_Reorder_automation
-```
+4. Hover your mouse to line after Assign variables node -> click + button -> select Skill from catalog
 
-## Create a project
+<img width="683" alt="image" src="https://github.com/user-attachments/assets/5a8102c0-7af4-4a8f-9df8-bbaf546b42f8" />
 
-1. Return to Watsonx Orchestrate. Click on the Projects tab.
-2. From the menu, select Skill studio.
-3. In the Skill studio page, click Create, and select Project.
-4. Select Import automation and select the zip file which you’ve processed in the first section [YourName]_Reorder_automation.zip and click import
+5. Type "salesforce" in search field -> select "Salesforce Custom Skills Version2"
+
+<img width="1590" alt="image" src="https://github.com/user-attachments/assets/53c3d845-013c-4218-98fe-afbd9eb4936c" />
+
+6. Click "Create a new order in Salesforce" -> click Save button
+
+<img width="1582" alt="image" src="https://github.com/user-attachments/assets/a8a8a848-eebd-4ccc-9acf-b1644af94949" />
+
+7. Click Define data mapping button <img width="304" alt="image" src="https://github.com/user-attachments/assets/5d2ca666-2e62-4ea0-bb57-48e50bf52d49" /> -> set all Input mapping as image below
+
+<img width="1234" alt="image" src="https://github.com/user-attachments/assets/259456de-ee09-4a9f-b332-1c7374390302" />
+
+8. Go to Output mapping tab -> set all variables as image below
+
+<img width="1238" alt="image" src="https://github.com/user-attachments/assets/2824e0b8-d8b2-485c-a493-65765f3f8c48" />
+
+9. Hover your mouse to line after "Create a new order in salesforce" node -> click + button -> select Skill from catalog
+
+<img width="903" alt="image" src="https://github.com/user-attachments/assets/d0f020c6-34fc-4473-832e-ec033488a862" />
+
+10. Repeat step 5 -> click "Create an order item in salesforce" -> click Save button
+
+<img width="1575" alt="image" src="https://github.com/user-attachments/assets/c86fc39f-58eb-46c0-be3d-84f4bf71c6c1" />
+
+11. Click Define data mapping button <img width="305" alt="image" src="https://github.com/user-attachments/assets/faf05ae9-180e-4f84-ab6a-cb8f93f1a2fe" /> -> Set variables under Input mapping tab as image below
+
+<img width="1231" alt="image" src="https://github.com/user-attachments/assets/4a93dbc3-9e4b-4ebc-a45c-f31c0b7e4be7" />
+
+12. Go to Output mapping tab -> set variables here as image below
+
+<img width="1234" alt="image" src="https://github.com/user-attachments/assets/29710d18-27c3-4bd6-8220-2d22d0f3820f" />
+
+## Create success message
+
+1. Hover your mouse to line before End node -> click + button -> select Generative AI
+
+<img width="927" alt="image" src="https://github.com/user-attachments/assets/490b1e94-7170-4134-adfb-70804b6acc72" />
+
+2. Select Create a Generative AI
+
+<img width="257" alt="image" src="https://github.com/user-attachments/assets/d3377c93-1225-465d-8d4a-bad66396165b" />
+
+3. Set Name to "Order is Success Notification" -> click Create button
+
+<img width="817" alt="image" src="https://github.com/user-attachments/assets/f0c01947-7844-4955-894d-72106d0334e9" />
+
+4. Set Context to ```Anda adalah asisten untuk tim pengadaan perusahaan untuk memberikan pesan kepada pengguna sesuai dengan keterangan yang diberikan``` -> add prompt variables named "order_id", "jumlah_order", "unit_price", and "order_value" -> set Prompt input to ```Berikan pesan keberhasilan karena telah order telah berhasil dibuat pada sistem salesforce. Beritahukan juga order_id jumlah_order, unit_price dan order_value yang dibuat. order_id: {{order_id}}; jumlah_order: {{jumlah_order}}; unit_price (dalam rupiah): {{unit_price}}; order_value (dalam rupiah): {{order_value}}``` -> set Max generated tokens to 500 -> change model to "mistralai/mixtral-8x7b-instruct-v01" -> click Generate button to test the prompt
+
+<img width="1405" alt="image" src="https://github.com/user-attachments/assets/81423307-189e-4094-860c-4594411f3b22" />
+
+5. Click Define data mapping button -> set variables under Input mapping tab as image below
+
+<img width="1238" alt="image" src="https://github.com/user-attachments/assets/2982311f-b119-40af-b223-e365d23ad368" />
+
+6. Go to Output mapping tab -> set all variables to image as below
+
+<img width="1233" alt="image" src="https://github.com/user-attachments/assets/cfa5ca80-612c-4856-bd9c-406fcf3b4096" />
+
+## Publish workflow
+
+1. Click Eye icon <img width="27" alt="image" src="https://github.com/user-attachments/assets/9c2bd472-f8a0-4f18-9560-423c4a8a4a33" /> for each skill in left pane to change access to public
+
+<img width="319" alt="image" src="https://github.com/user-attachments/assets/62fd1918-b091-4738-9d75-151dbac4eb3e" />
+
+2. Click Publish button <img width="100" alt="image" src="https://github.com/user-attachments/assets/9f25e44d-5786-4a3e-b806-523dd9fa12b2" /> -> set Name to "v1.0" -> click Create version publish button
+
+<img width="823" alt="image" src="https://github.com/user-attachments/assets/7e7bd6a0-4000-4ead-a62d-dd378c558c50" />
+
+3. Go to Skill catalog -> type "[Your Name]_Reorder_Automation" in search field -> select item with workflow icon <img width="50" alt="image" src="https://github.com/user-attachments/assets/f1b99eaf-8c22-45af-b7fe-a02e863280d0" />
+
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/20521ba5-5420-481d-b8bd-b5d8dc33d9bf" />
+
+4. Click Add skill
+
+<img width="334" alt="image" src="https://github.com/user-attachments/assets/dc9525d2-8ec5-486c-99cd-dba8dd60d465" />
+
+5. Go to AI agent configuration -> click Apps and skills -> type "[Your Name]_Reorder_Automation" to find your workflow -> select item with workflow icon <img width="52" alt="image" src="https://github.com/user-attachments/assets/445127aa-8816-4300-add6-147257f5da72" />
+
+<img width="1649" alt="image" src="https://github.com/user-attachments/assets/5a8ec1c8-1867-4694-8aca-c82db4c41407" />
+
+6. Click Add to chat
+
+<img width="264" alt="image" src="https://github.com/user-attachments/assets/77518e61-64fd-4fd7-b286-1af82a7eda54" />
+
+7. Set description to ```Skill is used when user want to perform reorder automation``` to Desciption field -> click Save button
+
+<img width="463" alt="image" src="https://github.com/user-attachments/assets/bbee7f1d-5358-43ab-83ee-849a1f64ac9b" />
+
+8. Now you can run your workflow directly from chat
+
+<img width="1461" alt="image" src="https://github.com/user-attachments/assets/329380f0-0848-4ab6-97af-4ef695d90fe1" />
 
