@@ -80,6 +80,57 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 <img width="1395" alt="image" src="https://github.com/user-attachments/assets/569de487-9114-4b72-b2ae-f03c3c06b892" />
 
+10. Go back to your workflow -> click Get Reorder Qty Node -> click Define data mapping button
+
+<img width="1332" alt="image" src="https://github.com/user-attachments/assets/75c8ada4-51af-47cc-b97d-a1fe64f8a900" />
+
+11. Hover your mouse to first text field -> click <img width="56" alt="image" src="https://github.com/user-attachments/assets/d3033cbe-9c64-43fe-a726-f65c30cc69d9" /> icon
+
+<img width="1211" alt="image" src="https://github.com/user-attachments/assets/b91790ca-a1a7-45dc-b16c-66dd587da026" />
+
+12. Select ReorderQty
+
+<img width="410" alt="image" src="https://github.com/user-attachments/assets/27ba25f7-62fd-47a5-847b-74f3e16024ac" />
+
+13. Repeat same process until your view will be look like image below:
+
+<img width="1239" alt="image" src="https://github.com/user-attachments/assets/91cf6e8c-603e-496a-ac47-a629aebab308" />
+
+14. Go to Output mapping tab -> repeat same process until your view will be look like image below -> click OK button
+
+<img width="1247" alt="image" src="https://github.com/user-attachments/assets/fb0a88fe-d905-48c1-9f61-2f7b243de2ee" />
+
+## Create branch
+
+1. Hover your mouse to line between Get Reorder Qty decision and End node -> click + button -> select Branch
+
+<img width="712" alt="image" src="https://github.com/user-attachments/assets/99805868-fc39-4b6b-a358-95889f97cbb0" />
+
+2. From Branch properties set Name to "CheckMinOrder" -> set Type to Conditional (single) -> set first Path Name to "MinOrderMet" -> leave second Path Name to "Else"
+
+<img width="1330" alt="image" src="https://github.com/user-attachments/assets/15ede59d-a5cc-45a4-997e-826fc5a227cb" />
+
+3. Click Edit conditions button <img width="145" alt="image" src="https://github.com/user-attachments/assets/a2813934-105c-4c07-85e2-bd734a124750" /> -> Select variable to ReorderValue -> set condition to "Greater than or equal to" -> set value to 2000 -> click Save button
+
+<img width="1598" alt="image" src="https://github.com/user-attachments/assets/8ea0123c-f233-4a9b-bd17-27d525a1d6c3" />
+
+## Create rejection message
+
+1. Hover your mouse to line that belongs to Else path -> click + button -> select Generative AI
+
+<img width="806" alt="image" src="https://github.com/user-attachments/assets/a42de4d0-f10f-49be-9ce0-518bc785b13d" />
+
+2. Set Name to "No Min Order Notification" -> click Create button
+
+<img width="832" alt="image" src="https://github.com/user-attachments/assets/759cef76-6e03-45d0-8bde-d46ca131df29" />
+
+3. Fill Context to ```Anda adalah asisten untuk tim pengadaan perusahaan untuk memberikan pesan kepada pengguna sesuai dengan keterangan yang diberikan``` -> add prompt variable named "jumlah_order" and set default value to 1000 -> set Max generated tokens to 500 -> set Prompt input to ```Berikan pesan penolakan karena jumlah_order tidak sesuai dengan kebijakan perusahaan. Kebijakan perusahaan mengatur bahwa jumlah minimum order adalah sebesar 2000. jumlah_order: {{jumlah_order}} ``` -> you can click Generate button to see sample response
+
+<img width="1400" alt="image" src="https://github.com/user-attachments/assets/8c9b07a2-6286-478d-9d6d-13e611a08d43" />
+
+## Create salesforce order from skillset 
+
+
 ## Prepare the zip file
 
 For the purpose of this workshop, you will be uploading a copy of a pre-fabricated object. 
