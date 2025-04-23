@@ -1,0 +1,2 @@
+### Introduction
+IBM watsonx Orchestrate uses natural language processing and Generative AI to draw from a catalog of basic and advanced skills to execute on customer, employee, and knowledge worker requests, and perform complex tasks on their behalf.

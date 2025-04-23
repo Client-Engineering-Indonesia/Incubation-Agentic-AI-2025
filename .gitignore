@@ -176,3 +176,5 @@ cython_debug/
 creds/*
 
 .DS_Store
+*.pptx
+*.ipynb
