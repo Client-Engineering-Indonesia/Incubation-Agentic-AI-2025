@@ -16,7 +16,7 @@ After the workshop, you will be able to:
 - Design complex decision automation flow
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/a396d0d3-c447-45d1-9ce5-8c452eb2c980" alt="Updated Image" style="width:800px; height:400px;">
+  <img src="https://github.com/user-attachments/assets/d37e675b-4091-4f52-9028-ffdf0d62f19f" alt="Updated Image" style="width:800px; height:400px;">
 </div>
 
 #### Disclaimer:
