@@ -1,4 +1,4 @@
-<img width="829" alt="image" src="https://github.com/user-attachments/assets/4fff9e73-71ba-4f04-8a88-946d16f04d06" /># Objective
+# Objective
 
 Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.![image](https://github.com/user-attachments/assets/09880e0e-5219-4436-b29e-9cc199102d69)
 
