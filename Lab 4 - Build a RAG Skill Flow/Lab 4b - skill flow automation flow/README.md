@@ -22,7 +22,7 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 4. Go to Variables tab -> add variable named "query" and "response_message" with details as image below:
 
-<img width="1408" alt="image" src="https://github.com/user-attachments/assets/45156ec5-576c-4132-bc10-1cbce772aeee" />
+<img width="1405" alt="image" src="https://github.com/user-attachments/assets/967b9b0b-14b7-4e52-beb6-33dfa488cc43" />
 
 5. Go back to Diagram tab -> click [Your Name]_Get Supplier Flow -> set Input mapping as image below:
 
