@@ -1,6 +1,6 @@
 # Objective
 
-Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.![image](https://github.com/user-attachments/assets/09880e0e-5219-4436-b29e-9cc199102d69)
+Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.
 
 ## Create workflow to get supplier
 
