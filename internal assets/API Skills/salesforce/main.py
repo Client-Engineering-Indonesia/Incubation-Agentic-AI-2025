@@ -131,7 +131,7 @@ def get_all_orders():
 def get_all_accounts():
     return {"accounts": get_all_accounts_sf()}
 
-@app.post("/create_order_item/")
+@app.post("/create_order_item")
 def create_product_in_order(request: OrderRequest):
     order = create_order_sf(
         request.account_id, # by default 001IU00002oGjMKYA0
