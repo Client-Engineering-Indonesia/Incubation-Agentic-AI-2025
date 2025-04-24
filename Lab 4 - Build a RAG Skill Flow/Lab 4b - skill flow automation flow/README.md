@@ -48,4 +48,14 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 <img width="1399" alt="image" src="https://github.com/user-attachments/assets/24aa5de7-83e8-48c9-a251-f9b34440447d" />
 
-11. 
+11. Click Get Supplier Name Msg node -> click Define data mapping button <img width="305" alt="image" src="https://github.com/user-attachments/assets/66e23316-692a-40fc-a319-3dcad41bdbfd" /> -> set Input mapping as image below
+
+<img width="1240" alt="image" src="https://github.com/user-attachments/assets/a00881a4-fa8b-4e37-bfc0-19c6957369b6" />
+
+12. Go to Output mapping -> map generated_text variable to suplier_name
+
+<img width="1234" alt="image" src="https://github.com/user-attachments/assets/4d71bed8-d4e6-4cde-9873-e492cdf68c7d" />
+
+13. Hover your mouse to Activity node -> click Delete icon
+
+<img width="299" alt="image" src="https://github.com/user-attachments/assets/145c4b75-aaed-43db-a93d-3603d876c190" />
