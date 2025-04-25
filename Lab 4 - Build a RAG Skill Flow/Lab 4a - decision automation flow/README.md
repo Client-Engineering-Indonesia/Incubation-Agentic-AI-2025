@@ -40,7 +40,8 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 3. Reperform same process on step 2 until you get all variables as image below:
 
-<img width="1407" alt="image" src="https://github.com/user-attachments/assets/7fe75f4e-a41d-4b9e-a39f-87cb24981e08" />
+<img width="1406" alt="image" src="https://github.com/user-attachments/assets/f90d2790-7414-4640-b5df-cee3698a5362" />
+
 
 ## Create decision
 
@@ -139,53 +140,26 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 ## Create salesforce order from skillset 
 
-1. Hover your mouse to line after CheckMinOrder branch -> click + button -> select Assignment
+1. Hover your mouse after Branch node -> click + button -> select Skill from catalog
 
-<img width="768" alt="image" src="https://github.com/user-attachments/assets/5c9a6b5a-80b1-4830-8b23-c962560aa399" />
+<img width="359" alt="image" src="https://github.com/user-attachments/assets/d347e491-fc46-4557-8de0-6c0488117b52" />
 
-2. Set Name to "Assign Variables" -> click Define data assignments button <img width="314" alt="image" src="https://github.com/user-attachments/assets/5a486c65-89d8-455a-898f-ba8a700ccb74" />
+2. Type "salesforce" in search field -> select "Salesforce Order Creation"
 
-<img width="1177" alt="image" src="https://github.com/user-attachments/assets/6007a8f9-571a-4f92-a0f6-2ef1cb771a3f" />
+<img width="1588" alt="image" src="https://github.com/user-attachments/assets/ac44aae0-abb1-4df9-b330-38a49a5b3757" />
 
-3. Click Add variable button -> select "PriceBookId" and "AccountId" -> set PriceBookId to "01uIU00000AWG47YAH" -> set AccountId to "001IU00002qLOFFYA4" -> click OK button
+3. Select "Order Creation in Salesforce" -> click Save button
 
-<img width="1577" alt="image" src="https://github.com/user-attachments/assets/0527efbe-be8f-424c-8565-91e925d58dc7" />
+<img width="1588" alt="image" src="https://github.com/user-attachments/assets/a93d0359-e14c-4396-8836-7b5f83314461" />
 
-4. Hover your mouse to line after Assign variables node -> click + button -> select Skill from catalog
+4. Click Define data mapping button <img width="301" alt="image" src="https://github.com/user-attachments/assets/97ce0e55-f2c3-4e42-aa01-763de99531c0" /> -> set variables under Input mapping tab as image below
 
-<img width="683" alt="image" src="https://github.com/user-attachments/assets/5a8102c0-7af4-4a8f-9df8-bbaf546b42f8" />
+<img width="1236" alt="image" src="https://github.com/user-attachments/assets/2db03f2c-4fde-4e4d-abfc-0860d79ec67e" />
 
-5. Type "salesforce" in search field -> select "Salesforce Custom Skills Version2"
+5. Go to Output mapping tab -> set variables as image below -> click Save button
 
-<img width="1590" alt="image" src="https://github.com/user-attachments/assets/53c3d845-013c-4218-98fe-afbd9eb4936c" />
+<img width="1234" alt="image" src="https://github.com/user-attachments/assets/47607703-2d36-4985-80a8-70c48c3b3e46" />
 
-6. Click "Create a new order in Salesforce" -> click Save button
-
-<img width="1582" alt="image" src="https://github.com/user-attachments/assets/a8a8a848-eebd-4ccc-9acf-b1644af94949" />
-
-7. Click Define data mapping button <img width="304" alt="image" src="https://github.com/user-attachments/assets/5d2ca666-2e62-4ea0-bb57-48e50bf52d49" /> -> set all Input mapping as image below
-
-<img width="1234" alt="image" src="https://github.com/user-attachments/assets/259456de-ee09-4a9f-b332-1c7374390302" />
-
-8. Go to Output mapping tab -> set all variables as image below
-
-<img width="1238" alt="image" src="https://github.com/user-attachments/assets/2824e0b8-d8b2-485c-a493-65765f3f8c48" />
-
-9. Hover your mouse to line after "Create a new order in salesforce" node -> click + button -> select Skill from catalog
-
-<img width="903" alt="image" src="https://github.com/user-attachments/assets/d0f020c6-34fc-4473-832e-ec033488a862" />
-
-10. Repeat step 5 -> click "Create an order item in salesforce" -> click Save button
-
-<img width="1575" alt="image" src="https://github.com/user-attachments/assets/c86fc39f-58eb-46c0-be3d-84f4bf71c6c1" />
-
-11. Click Define data mapping button <img width="305" alt="image" src="https://github.com/user-attachments/assets/faf05ae9-180e-4f84-ab6a-cb8f93f1a2fe" /> -> Set variables under Input mapping tab as image below
-
-<img width="1231" alt="image" src="https://github.com/user-attachments/assets/4a93dbc3-9e4b-4ebc-a45c-f31c0b7e4be7" />
-
-12. Go to Output mapping tab -> set variables here as image below
-
-<img width="1234" alt="image" src="https://github.com/user-attachments/assets/29710d18-27c3-4bd6-8220-2d22d0f3820f" />
 
 ## Create success message
 
