@@ -1,4 +1,4 @@
-# Objective
+![image](https://github.com/user-attachments/assets/b06eee3f-2a75-4849-93d8-4d3c9576fe31)# Objective
 
 Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.
 
@@ -36,3 +36,10 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/a8285ab9-92b0-4689-8f2c-e30e1cf33a82)
 
+9. Click [Your Name]_Get_Supplier_Flow node -> click Define data mapping button ![image](https://github.com/user-attachments/assets/d304fac3-1cd9-4d5d-b2a1-2d9abcee51b3) -> set all variables as image below
+
+![image](https://github.com/user-attachments/assets/9ca9fe86-cfa2-47fc-bbbc-150120dfea78)
+
+10. Go to Output mapping -> set variables as image below -> click OK button
+
+11. 
