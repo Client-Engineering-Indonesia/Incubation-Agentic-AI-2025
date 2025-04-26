@@ -22,7 +22,7 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 5. Go to Variables tab -> create required variables and its details as image below:
 
-![image](https://github.com/user-attachments/assets/a8a01b47-6860-4e69-b3ec-f647c2f64647)
+![image](https://github.com/user-attachments/assets/24babecc-f319-4e7d-b63c-3c0cde11ad84)
 
 6. Go back to Diagram tab -> hover your mouse to center line -> click + button -> select Skill from catalog
 
@@ -52,7 +52,19 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/e522b507-ec0d-4147-ad4d-0a647f104c2b)
 
-13. Set Context to ```Anda adalah asisten untuk tim pengadaan yang memberikan jawaban sesuai dengan prompt user``` -> add prompt variabled named "research" -> set Max generated token to 500 -> change model to mistralai/mixtrail-8x7b-instruct-v01 -> set Prompt input to ```Berikan satu nama supplier terbaik berdasarkan hasil riset di bawah ini. Hanya berikan nama supplier saja tidak perlu diberikan penjelasan. Hasil Riset: {{research}}```
+13. Set Context to ```Anda adalah asisten untuk tim pengadaan yang bertugas mencari entitas berdasarkan prompt user. Contoh Prompt: Temukan nama produk berdasarkan pertanyaan yang diberikan user. Pertanyaan User: Berapa stok produk Batik Bali di gudang saat ini? Output: Batik Bali``` -> add prompt variabled named "query" -> set Max generated token to 500 -> change model to mistralai/mixtrail-8x7b-instruct-v01 -> set Prompt input to ```Temukan nama produk berdasarkan pertanyaan yang diberikan user. Berikan jawaban tanpa mengikutkan kata "produk". Pertanyaan User: {{query}}```
+
+![image](https://github.com/user-attachments/assets/9d75fc2a-e4a2-4620-ac8e-9f54b11f1808)
+
+14. Click [Your name]_Get_Product_Name node -> click Define data mapping button ![image](https://github.com/user-attachments/assets/ea8baa3f-a6f4-4864-9b37-10d2e83bb48f) -> map variables under Input mapping tab as image below:
+
+![image](https://github.com/user-attachments/assets/3f591dc0-2559-4275-80e9-34edc64889f3)
+
+
+15. Set variables under Output mapping tab -> click OK button
+
+![image](https://github.com/user-attachments/assets/46912d42-1c96-4422-9dc2-f2f6793a48d1)
+
 
 ![image](https://github.com/user-attachments/assets/48274b64-ebdb-4965-ac54-83290a6ab482)
 
@@ -63,6 +75,16 @@ Now that we have all the skills and workflows in place, we can create a complete
 15. Go to Output mapping tab -> set variable as image below -> click OK button
 
 ![image](https://github.com/user-attachments/assets/6bbfb4c6-199c-4352-9cf9-941cde7c4d71)
+
+16. Hover your mouse to line before End node -> click + button -> select Generative AI
+
+![image](https://github.com/user-attachments/assets/cbc3e563-f16a-4fc3-bfa9-9aeef390f231)
+
+17. Select Craete a Generative AI ![image](https://github.com/user-attachments/assets/e246831a-8675-41b0-b05e-cb9f7806fe38) -> set Name to [Your name]_Get_Product_Name
+
+![image](https://github.com/user-attachments/assets/a8e5f299-94f2-4b56-861e-a832b9664169)
+
+18. Set Context to ```Anda adalah asisten untuk tim pengadaan yang memberikan jawaban sesuai dengan prompt user``` -> add prompt variabled named "research" -> set Max generated token to 500 -> change model to mistralai/mixtrail-8x7b-instruct-v01 -> set Prompt input to ```Berikan satu nama supplier terbaik berdasarkan hasil riset di bawah ini. Hanya berikan nama supplier saja tidak perlu diberikan penjelasan. Hasil Riset: {{research}}```
 
 16. Ensure you have set visibility of your workflow to Public
 
@@ -124,4 +146,31 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/6a0ff13c-e05f-4936-8fed-90b919267e52)
 
-9. 
+9. Click [Your name]_Get_Supplier_Flow -> click Query field -> click Input form ![image](https://github.com/user-attachments/assets/b115cb59-24df-4901-be83-bb380f00d951) from right page -> click Query
+
+![image](https://github.com/user-attachments/assets/bb7afc28-6d17-4b2a-9e63-1878f6348f47)
+
+10. Please remember that this workflow will generate variable named "SupplierName" as you defined in previous section. You can ensure it by clicking Output tab
+
+![image](https://github.com/user-attachments/assets/34bcd6c6-1f9c-4043-9618-3748b6076188)
+
+11. Set Form name to "Research Result" -> select Single line text  -> click Next button
+
+![image](https://github.com/user-attachments/assets/f18e28f4-3a31-41cf-b46a-bcbf59fa9745)
+
+12. Set Display Name to "Supplier Name" -> click Appply button
+
+![image](https://github.com/user-attachments/assets/839a2c7d-6e22-4b2d-a0e3-18c3a46ca060)
+
+13. Click "Supplier Name" field -> click [Your name]_Get_Supplier_Flow ![image](https://github.com/user-attachments/assets/83ab72d3-fd5e-4cf5-b406-a8c8172897ff) -> click SupplierName ![image](https://github.com/user-attachments/assets/f8836965-c1fd-4dfc-b397-5e0e2cb284bc) -> Ensure you have same view as image below
+
+![image](https://github.com/user-attachments/assets/c3260b12-eb91-4462-9bb3-5a4958d02117)
+
+## Add Salesforce skill
+
+1. Click + button under [Your name]_Get_Supplier_Flow -> select Salesforce ![image](https://github.com/user-attachments/assets/b4374025-b007-43f7-abc4-ba5c80e8a1aa) from opened right pane -> click Add skill in Get all accounts skill
+
+![image](https://github.com/user-attachments/assets/945820d9-d9ec-4a8d-aff2-0a141a4e2369)
+
+2. Click that new node -> click # 1 filterable input -> select Account Name -> set Operator to "is" -> click Value -> click [Your name]_Get_Supplier_Flow ![image](https://github.com/user-attachments/assets/e1257795-6745-464f-9e08-da2d7313c309) -> click SupplierName ![image](https://github.com/user-attachments/assets/cd319d9c-1bfc-460d-a708-a950185e1e9d)
+
