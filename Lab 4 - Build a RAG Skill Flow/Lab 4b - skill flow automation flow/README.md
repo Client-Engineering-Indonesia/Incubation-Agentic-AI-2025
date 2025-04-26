@@ -2,7 +2,7 @@
 
 Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.
 
-## Create workflow to get supplier
+## Create workflow to get supplier and publish it
 
 1. Go to Skill studio -> click Create button -> select Project
 
@@ -42,4 +42,34 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 10. Go to Output mapping -> set variables as image below -> click OK button
 
-11. 
+![image](https://github.com/user-attachments/assets/6f39fadd-3724-40d6-a36c-7525f31adce2)
+
+11. Hover your mouse to line before End node -> click + button -> select Generative AI
+
+![image](https://github.com/user-attachments/assets/aaab2402-ce72-4f95-a34a-543dcfee8e7b)
+
+12. Set Name to [Your name]_Best_Supplier Name -> click Create button
+
+![image](https://github.com/user-attachments/assets/e522b507-ec0d-4147-ad4d-0a647f104c2b)
+
+13. Set Context to ```Anda adalah asisten untuk tim pengadaan yang memberikan jawaban sesuai dengan prompt user``` -> add prompt variabled named "research" -> set Max generated token to 500 -> change model to mistralai/mixtrail-8x7b-instruct-v01 -> set Prompt input to ```Berikan satu nama supplier terbaik berdasarkan hasil riset di bawah ini. Hanya berikan nama supplier saja tidak perlu diberikan penjelasan. Hasil Riset: {{research}}```
+
+![image](https://github.com/user-attachments/assets/48274b64-ebdb-4965-ac54-83290a6ab482)
+
+14. Go to your previous workflow -> click Define data mapping button ![image](https://github.com/user-attachments/assets/aa31174d-7ec2-4f02-8ce7-0fef44dbd79c) -> map variables under Input mapping tab as image below
+
+![image](https://github.com/user-attachments/assets/30c404a6-9916-494d-9c1b-d3795e202341)
+
+15. Go to Output mapping tab -> set variable as image below -> click OK button
+
+![image](https://github.com/user-attachments/assets/6bbfb4c6-199c-4352-9cf9-941cde7c4d71)
+
+16. Ensure you have set visibility of your workflow to Public
+
+![image](https://github.com/user-attachments/assets/91ddfa4c-7599-4b29-b14d-ab3f3a4a67d7)
+
+17. Click Publish button ![image](https://github.com/user-attachments/assets/e4354400-5652-496b-9fab-5a317164e40a) -> set Name to "test-version-01" -> click Create version and publish button
+
+![image](https://github.com/user-attachments/assets/ca06cd6b-4d42-4e93-a085-0a90d8ef8c5e)
+
+##
