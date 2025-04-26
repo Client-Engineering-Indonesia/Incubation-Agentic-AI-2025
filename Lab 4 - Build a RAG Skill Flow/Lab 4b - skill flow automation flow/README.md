@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b06eee3f-2a75-4849-93d8-4d3c9576fe31)# Objective
+# Objective
 
 Now that we have all the skills and workflows in place, we can create a complete flow. You can create this flow within project or skill flow. Since Skill Flow is more readily available, we will build this final flow in the Skill Flows section.
 
@@ -72,4 +72,38 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/ca06cd6b-4d42-4e93-a085-0a90d8ef8c5e)
 
-##
+## Create skillflow to compile skills and workflow
+
+1. Go to Skill catalog by clicking Hamburger icon in top-left side ![image](https://github.com/user-attachments/assets/61b3ce6e-f132-40d5-842d-9ac8d175ea86) -> type "[Your name]_Get_Supplier_Flow" -> select the workflow you have created in previous section
+
+![image](https://github.com/user-attachments/assets/472e0842-6209-4453-915a-25caba640b1d)
+
+2. Click Add skill -> ensure the status has changed to "Added"
+
+![image](https://github.com/user-attachments/assets/53a8bcc9-d14d-4302-8fdc-d0eeb3b03bbf)
+
+3. Go to Skill studio by clicking Hamburger icon in top-left side ![image](https://github.com/user-attachments/assets/61b3ce6e-f132-40d5-842d-9ac8d175ea86) -> click Create button -> select Skillflow
+
+![image](https://github.com/user-attachments/assets/6a9a36ac-d6bf-4563-bdff-47358d49b6c9)
+
+4. Click pencil icon ![image](https://github.com/user-attachments/assets/8621b61d-fdda-41d5-86f0-055d0025be27) in top-left -> set Name to [Your name]_Reorder_Skillflow -> click Save button
+
+![image](https://github.com/user-attachments/assets/04b43b28-0159-4288-abdb-9f3ed04a21cf)
+
+5. Click + button between Start and End node -> select Custom Form
+
+![image](https://github.com/user-attachments/assets/92dcb981-286d-4468-94f7-d142c63d4141)
+
+6. Click Add skill inside Input Form skill
+
+![image](https://github.com/user-attachments/assets/5798ed23-8b24-4021-a28f-e557f8ad9789)
+
+7. Click + button under Input form that you have created previously -> type "[Your name]_Get_Supplier_Flow" -> click it
+
+![image](https://github.com/user-attachments/assets/4488f34c-8647-4c81-a565-fd1638c60359)
+
+8. Click Add skill
+
+![image](https://github.com/user-attachments/assets/a1ade749-cfc0-4775-83ba-49ecb4c1676a)
+
+8.
