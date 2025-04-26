@@ -40,8 +40,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 3. Reperform same process on step 2 until you get all variables as image below:
 
-<img width="1406" alt="image" src="https://github.com/user-attachments/assets/f90d2790-7414-4640-b5df-cee3698a5362" />
-
+![image](https://github.com/user-attachments/assets/ae60eddc-c449-4e3c-86eb-7c7d8da937b6)
 
 ## Create decision
 
@@ -121,7 +120,7 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 <img width="806" alt="image" src="https://github.com/user-attachments/assets/a42de4d0-f10f-49be-9ce0-518bc785b13d" />
 
-2. Set Name to "No Min Order Notification" -> click Create button
+2. Set Name to "[Your Name]_No Min Order Notification" -> click Create button
 
 <img width="832" alt="image" src="https://github.com/user-attachments/assets/759cef76-6e03-45d0-8bde-d46ca131df29" />
 
@@ -163,29 +162,25 @@ For this lab, we will be creating an automation workflow which will allow us to 
 
 ## Create success message
 
-1. Hover your mouse to line before End node -> click + button -> select Generative AI
+1. Hover your mouse to line after "Order Creation in Salesforce" node -> click + button -> select Generative AI
 
-<img width="927" alt="image" src="https://github.com/user-attachments/assets/490b1e94-7170-4134-adfb-70804b6acc72" />
+![image](https://github.com/user-attachments/assets/bb342a91-9036-4eb3-98e5-0a3eddc1157d)
 
-2. Select Create a Generative AI
+2. Select Create a Generative AI ![image](https://github.com/user-attachments/assets/7f213d4d-4ec7-4f1b-989e-80bb7759090d) -> set Name to "[Your Name]_Order is Success Notification" -> click Create button
 
-<img width="257" alt="image" src="https://github.com/user-attachments/assets/d3377c93-1225-465d-8d4a-bad66396165b" />
+![image](https://github.com/user-attachments/assets/9388c73a-5cca-4d82-a509-55af0d22f2cc)
 
-3. Set Name to "Order is Success Notification" -> click Create button
+3. Set Context to ```Anda adalah asisten untuk tim pengadaan perusahaan untuk memberikan pesan kepada pengguna sesuai dengan keterangan yang diberikan``` -> create prompt variable named "order_id", "jumlah_order", "unit_price", "order_value" -> set Prompt input to ```Berikan pesan keberhasilan karena telah order telah berhasil dibuat pada sistem salesforce. Beritahukan juga order_id jumlah_order, unit_price dan order_value yang dibuat. order_id: {{order_id}} jumlah_order: {{jumlah_order}} unit_price (dalam rupiah): {{unit_price}} order_value (dalam rupiah): {{order_value}}``` -> set Max generated token to 500 -> set model to "mistraiai/mixtral-8x7b-instruct-v01" -> you can check that all are set up based on image below
 
-<img width="817" alt="image" src="https://github.com/user-attachments/assets/f0c01947-7844-4955-894d-72106d0334e9" />
+![image](https://github.com/user-attachments/assets/30941603-d0f3-4fb8-b95b-757b8614d135)
 
-4. Set Context to ```Anda adalah asisten untuk tim pengadaan perusahaan untuk memberikan pesan kepada pengguna sesuai dengan keterangan yang diberikan``` -> add prompt variables named "order_id", "jumlah_order", "unit_price", and "order_value" -> set Prompt input to ```Berikan pesan keberhasilan karena telah order telah berhasil dibuat pada sistem salesforce. Beritahukan juga order_id jumlah_order, unit_price dan order_value yang dibuat. order_id: {{order_id}}; jumlah_order: {{jumlah_order}}; unit_price (dalam rupiah): {{unit_price}}; order_value (dalam rupiah): {{order_value}}``` -> set Max generated tokens to 500 -> change model to "mistralai/mixtral-8x7b-instruct-v01" -> click Generate button to test the prompt
+4. Go back to your previous workflow -> click "[Your name]_Order is sucess notification" node -> click Define data mapping button ![image](https://github.com/user-attachments/assets/ee5c865e-8d12-42f4-b768-1df5113845a9) -> set variables under Input mapping tab as image below
 
-<img width="1405" alt="image" src="https://github.com/user-attachments/assets/81423307-189e-4094-860c-4594411f3b22" />
+![image](https://github.com/user-attachments/assets/2d9d2b99-f946-412a-8ba7-ccb2391a8026)
 
-5. Click Define data mapping button -> set variables under Input mapping tab as image below
+5. Go to Output mapping tab -> set variables as image below -> click OK button
 
-<img width="1238" alt="image" src="https://github.com/user-attachments/assets/2982311f-b119-40af-b223-e365d23ad368" />
-
-6. Go to Output mapping tab -> set all variables to image as below
-
-<img width="1233" alt="image" src="https://github.com/user-attachments/assets/cfa5ca80-612c-4856-bd9c-406fcf3b4096" />
+![image](https://github.com/user-attachments/assets/e069ab79-5a78-4f32-bae6-b6d0eb16bf49)
 
 ## Publish workflow
 
