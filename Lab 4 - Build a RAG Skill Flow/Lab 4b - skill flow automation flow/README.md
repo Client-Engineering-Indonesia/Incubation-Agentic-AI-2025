@@ -72,7 +72,7 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/ca06cd6b-4d42-4e93-a085-0a90d8ef8c5e)
 
-## Create skillflow to compile skills and workflow
+## Create skillflow to compile skills
 
 1. Go to Skill catalog by clicking Hamburger icon in top-left side ![image](https://github.com/user-attachments/assets/61b3ce6e-f132-40d5-842d-9ac8d175ea86) -> type "[Your name]_Get_Supplier_Flow" -> select the workflow you have created in previous section
 
@@ -90,20 +90,38 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ![image](https://github.com/user-attachments/assets/04b43b28-0159-4288-abdb-9f3ed04a21cf)
 
-5. Click + button between Start and End node -> select Custom Form
+## Add "Research Agent" skill
+
+1. Click + button between Start and End node -> select Custom Form
 
 ![image](https://github.com/user-attachments/assets/92dcb981-286d-4468-94f7-d142c63d4141)
 
-6. Click Add skill inside Input Form skill
+2. Click Add skill inside Input Form skill
 
 ![image](https://github.com/user-attachments/assets/5798ed23-8b24-4021-a28f-e557f8ad9789)
 
-7. Click + button under Input form that you have created previously -> type "[Your name]_Get_Supplier_Flow" -> click it
+3. Click + button under Input form that you have created previously -> type "[Your name]_Get_Supplier_Flow" -> click it
 
 ![image](https://github.com/user-attachments/assets/4488f34c-8647-4c81-a565-fd1638c60359)
 
-8. Click Add skill
+4. Click Add skill
 
 ![image](https://github.com/user-attachments/assets/a1ade749-cfc0-4775-83ba-49ecb4c1676a)
 
-8.
+5. Click + button under new node -> add Input form as you did in step 5-6 -> your flow will be look like image below
+
+![image](https://github.com/user-attachments/assets/2b5dff09-d94a-49be-9969-146c7873690f)
+
+6. Click first Input form -> click Add input field button ![image](https://github.com/user-attachments/assets/dcd614eb-390b-464b-8743-65b36bb9d013) -> select Paragraph text -> click Next button
+
+![image](https://github.com/user-attachments/assets/7fdb4c60-706f-4d7b-a7b2-906549a5f7c5)
+
+7. Set Display label to "Query" -> click Apply button
+
+![image](https://github.com/user-attachments/assets/85dbd61b-7fea-4894-939d-2839e33fc28f)
+
+8. Set Form title to ```Halo, apa yang bisa saya bantu?``` -> your view will be look like image below
+
+![image](https://github.com/user-attachments/assets/6a0ff13c-e05f-4936-8fed-90b919267e52)
+
+9. 
