@@ -168,9 +168,97 @@ Now that we have all the skills and workflows in place, we can create a complete
 
 ## Add Salesforce skill
 
-1. Click + button under [Your name]_Get_Supplier_Flow -> select Salesforce ![image](https://github.com/user-attachments/assets/b4374025-b007-43f7-abc4-ba5c80e8a1aa) from opened right pane -> click Add skill in Get all accounts skill
+1. Click + button before End node -> click Custom Form -> click Add skill in Input form skill
+
+![image](https://github.com/user-attachments/assets/9d248911-aa03-44fd-b9f9-9eecf38d44b4)  --> ![image](https://github.com/user-attachments/assets/43cec7d2-f43f-4cc2-8915-b3120d81fd52)
+
+2. Set Form title to ```Here is the best supplier of product you query``` -> Add input fields named "Product Name", "Supplier Name", "Order Date", "Reorder Quantity", "Order Status" which are outputs of workflow named "[Your name]_Get_Supplier_Flow" that you have created previously -> map their value as image below: 
+
+![image](https://github.com/user-attachments/assets/ee5d05dd-42a2-4ad1-8155-a9f0858594e7)
+
+### Data type
+
+```code
+Product Name = Single line text
+Supplier Name = Single line text
+Order Date = Date
+Reorder Quantity = Decimal
+Order Status = Single line text
+```
+
+3. Click + button before End node -> select Salesforce ![image](https://github.com/user-attachments/assets/b4374025-b007-43f7-abc4-ba5c80e8a1aa) from opened right pane -> click Add skill in Get all accounts skill
 
 ![image](https://github.com/user-attachments/assets/945820d9-d9ec-4a8d-aff2-0a141a4e2369)
 
-2. Click that new node -> click # 1 filterable input -> select Account Name -> set Operator to "is" -> click Value -> click [Your name]_Get_Supplier_Flow ![image](https://github.com/user-attachments/assets/e1257795-6745-464f-9e08-da2d7313c309) -> click SupplierName ![image](https://github.com/user-attachments/assets/cd319d9c-1bfc-460d-a708-a950185e1e9d)
+4. Click that new node -> click # 1 filterable input -> select Account Name -> set Operator to "is" -> click Value -> map it with [2nd Input Form].[Supplier Name] -> ensure your view look same as image below
 
+![image](https://github.com/user-attachments/assets/6d459867-27ce-4b4f-b85d-75efd838aacd)
+
+5. Click + button before End node -> select Salesforce ![image](https://github.com/user-attachments/assets/b4374025-b007-43f7-abc4-ba5c80e8a1aa) from opened right pane -> click Add skill in Get all price book skill
+
+![image](https://github.com/user-attachments/assets/d22f05ee-5b59-4e75-88ec-dd137fcf7d7b)
+
+6. Click + button before End node -> select Salesforce ![image](https://github.com/user-attachments/assets/b4374025-b007-43f7-abc4-ba5c80e8a1aa) from opened right pane -> click Add skill in Get all products skill
+
+![image](https://github.com/user-attachments/assets/44ba1c7d-a544-4996-a712-76860d8f19ed)
+
+7. Click Get all price book node -> set # 1 Filterable input to "Pricebook Name" -> set Operation to "is" -> map it with [2nd Input Form].[Supplier Name] -> ensure your view look same as image below
+
+![image](https://github.com/user-attachments/assets/1ffd1bb8-6516-41b0-a662-1839d261cc1f)
+
+8. Click Get all products node -> set # 1 Filterable input to "Product Name" -> set Operation to "is" -> map it with [2nd Input Form].[Product Name] -> ensure your view look same as image below
+
+![image](https://github.com/user-attachments/assets/607b210a-f78a-4e0c-b2c4-cc94ed5a4fa9)
+
+## Add "Reorder Automation" skill
+
+1. Click + button before End node -> type "[Your name]_Reorder_Automation" -> select it
+
+![image](https://github.com/user-attachments/assets/e3c207b7-8d81-4b29-bcb8-eac48e1b0357)
+
+2. Click Add skill in [Your name]_Reorder_Automation
+
+![image](https://github.com/user-attachments/assets/9d15eef2-297d-4057-b836-a8c1dfef30ab)
+
+3. Map fields as image below
+
+![image](https://github.com/user-attachments/assets/f33f18ca-3d8c-4fbf-8c83-97705099555e)
+
+### Mapping guideline
+
+```code
+AccountId = [Get all accounts].[Id]
+OrderDate = [2nd Input form].[Order Date]
+UnitPrice = [Get all products].[Product_Amount]
+Product2Id = [Get all products].[Id]
+ReorderQty = [2nd Input form].[Reorder Quantity]
+OrderStatus = [2nd Input form].[Order Status]
+PriceBookId = [Get all price book].[Id]
+```
+
+## Publish skillflow
+
+1. Click Action button -> Enhance
+
+![image](https://github.com/user-attachments/assets/ae72c2e5-8a13-499d-aeee-24261adcccfa)
+
+2. Set Description to ```Used when user wants to perform research on best supplier then automate order in Salesforce``` -> click Publish button
+
+![image](https://github.com/user-attachments/assets/098abb74-7243-49e7-9291-f61305e7c986)
+
+3. Go to Skill catalog page -> type "Skillflow" in search field -> click it once it is found -> type "[Your name]_Reorder_Skillflow" -> click Add skill in [Your name]_Reorder_Skillflow
+
+![image](https://github.com/user-attachments/assets/8c5a00d3-93cc-4255-b371-424891afeba2)
+
+4. Go to AI Agent Configurator page -> click Apps and skills on left pane -> search "skill flow" in search field -> click it once it is found -> type "[Your name]_Reorder_Skillflow" in search field -> once it is found, click Add to chat
+
+![image](https://github.com/user-attachments/assets/b3b37d69-9f85-446c-bebe-6a71db3a63ce)
+
+5. Modify description field -> click Add skill button
+
+![image](https://github.com/user-attachments/assets/045b4134-f4ce-4aea-af73-84eceefaf0f4)
+
+
+## Test skillflow
+
+1. 
