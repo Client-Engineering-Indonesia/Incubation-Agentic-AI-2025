@@ -6,7 +6,7 @@
 Buat IBM ID jika Anda belum memilikinya menggunakan [Formulir Pendaftaran IBM ID](https://www.ibm.com/account/reg/us-en/signup?formid=urx-19776).  
 Gunakan **email yang sama** dengan yang Anda daftarkan untuk workshop ini.
 
-📖 Untuk detail lebih lanjut, lihat dokumentasi: [Mendaftar ke Watsonx (Creating IBM ID)]([https://www.ibm.com/docs/en/watsonx/saas?topic=tutorials-signing-up-watsonx#personal](https://www.ibm.com/docs/en/cds-saas-flex?topic=support-how-create-ibmid)).
+📖 Untuk detail lebih lanjut, lihat dokumentasi: [Mendaftar ke Watsonx](https://www.ibm.com/docs/en/cds-saas-flex?topic=support-how-create-ibmid).
 
 ## 2. Mendapatkan Akses ke Watsonx Orchestrate
 
