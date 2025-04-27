@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f60c00d4-1c15-4167-8b33-bffa15aa54db)## List of users
+## List of users
 Here are the available users. The password will be given when incubation starts.
 
 1. Login to IBM Cloud here URL: https://dataplatform.cloud.ibm.com/ 
