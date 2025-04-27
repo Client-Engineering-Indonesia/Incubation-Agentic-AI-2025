@@ -36,6 +36,8 @@ Waktu dan durasi workshop dapat berubah sewaktu-waktu.
   <img src="https://github.com/user-attachments/assets/16113687-a58d-4769-b2e7-1a3f55b816b5d" alt="Updated Image" width="937" height="480">
 </div>
 
+
+
 Silahkan untuk mengikuti dan mempersiapkan environment terlebih dahulu sebelum memulai workshopnya [environment check](https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025/tree/main/Lab%200%20-%20Environment%20Check)
 
 ---
