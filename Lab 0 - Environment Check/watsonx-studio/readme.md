@@ -5,7 +5,7 @@ Here are the available users. The password will be given when incubation starts.
 2. Enter the username and password as per your respective company.
 3. Select region **Dallas (us-south)**
 
-### Client Name Group
+### Client Name Group 📌
 - <your ibm email>+<company name>_<number>@mail.test.ibm.com
 
 ### Tigaraksa
