@@ -1,12 +1,13 @@
-## List of users
+![image](https://github.com/user-attachments/assets/f60c00d4-1c15-4167-8b33-bffa15aa54db)## List of users
 Here are the available users. Password will be given when incubation start.
 
 1. Login to IBM Cloud here URL: https://dataplatform.cloud.ibm.com/ 
 2. Enter the username and password as per your respective company.
 3. Select region **Dallas (us-south)**
 
-Client Name Group
+### Client Name Group
 - <your ibm email>+workshop@mail.test.ibm.com
+
 
   
 Prerequisite actions can be found here: 
