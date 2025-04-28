@@ -46,9 +46,9 @@ unit_price_query = """SELECT Id, Name, UnitPrice, IsActive, PriceBook2Id FROM Pr
 #unit_price_query = """SELECT Id, Name, IsActive, IsStandard FROM Pricebook2"""
 pb_query = """SELECT Id, Name from Pricebook2 WHERE Id = '{text}'"""
 
-def get_all_price_book():
+def get_all_price_book_sf():
     result = sf.query(unit_price_query)
-    products = []
+    products = {}
 
     for row in result["records"]:
         #pb_query_replaced = pb_query.format(text=row["Pricebook2Id"])
@@ -56,12 +56,12 @@ def get_all_price_book():
         #pricebook_name = pb_result["records"][0]["Name"] if pb_result["records"] else "Unknown"
 
         products.append({
-            "products_data": row,
+            "Product Name": row,
             #"Pricebook Name": pricebook_name
         })
     return products
 
-def get_price_by_id(id):
+def get_price_by_id_sf(id):
     single_unit_price_query = f"""SELECT Id, Name, UnitPrice, IsActive, PriceBook2Id FROM PricebookEntry WHERE Id='{id}' ORDER BY UnitPrice"""
     result = sf.query(single_unit_price_query)
     products = []
@@ -72,9 +72,12 @@ def get_price_by_id(id):
         #pricebook_name = pb_result["records"][0]["Name"] if pb_result["records"] else "Unknown"
 
         products.append({
-            "products_data": row,
-            #"Pricebook Name": pricebook_name
+            "UnitPrice": row['UnitPrice'],
+            "Id": row["Id"],
+            "Name": row["Name"],
+            "Pricebook2Id": row["Pricebook2Id"],
         })
+
     return products
 
 def create_order_item_sf(order_id, Product2Id, Quantity, UnitPrice):
@@ -97,10 +100,17 @@ def get_all_accounts_sf():
     return account_result
 
 def get_all_orders_sf():
-    order_query = """SELECT Id, OrderNumber, TotalAmount, CreatedDate FROM Order WHERE TotalAmount > 0 ORDER BY CreatedDate DESC LIMIT 100"""
+    order_query = """SELECT Id, OrderNumber, TotalAmount, CreatedDate FROM Order WHERE TotalAmount > 0 ORDER BY CreatedDate DESC LIMIT 10"""
     order_result = sf.query(order_query)
 
-    return order_result
+    list_order = [{
+        "OrderId": row["Id"],
+        "OrderNumber": row["OrderNumber"],
+        "TotalAmount": row["TotalAmount"],
+        "CreatedDate": row["CreatedDate"],
+    } for row in order_result["records"]]
+
+    return list_order
 
 def create_order_sf(account_id, date, Pricebook2Id, status="Draft"):
     order_result = sf.Order.create({
@@ -117,21 +127,23 @@ def home():
     print("Salesforce custom skills for wxo")
 
 # Define a route to call the check_reorder_quantity function
-@app.get("/get_all_price_book")
+@app.get("/price_books")
 def fetch_price_books():
-    return {"price_books": get_all_price_book()}
+    return {"price_books": get_all_price_book_sf()}
 
 # Define a route to call the check_reorder_quantity function
 @app.get("/get_all_orders")
 def get_all_orders():
-    return {"orders": get_all_orders_sf()}
+    orders = get_all_orders_sf()
+    #print("list order", orders)
+    return {"orders": orders}
 
 
 @app.get("/get_all_accounts")
 def get_all_accounts():
     return {"accounts": get_all_accounts_sf()}
 
-@app.post("/create_order_item")
+@app.post("/create_order_item/")
 def create_product_in_order(request: OrderRequest):
     order = create_order_sf(
         request.account_id, # by default 001IU00002oGjMKYA0
@@ -142,8 +154,11 @@ def create_product_in_order(request: OrderRequest):
     print("order", order)
     
 
-    price = get_price_by_id(request.Product2Id)[0]["products_data"]["UnitPrice"]
-    #print("price", price)
+    price = get_price_by_id_sf(request.Product2Id)
+    price = price[0]
+    price["order_value"] = price["UnitPrice"] * request.Quantity
+    print("price", price)
+    unit_price = price["UnitPrice"]
 
     order_id = order["id"]
     #order_id = '801IU000005RLxsYAG'
@@ -152,11 +167,11 @@ def create_product_in_order(request: OrderRequest):
         order_id, 
         request.Product2Id, # by default 01uIU00000AWHg5YAH
         request.Quantity, 
-        price
+        unit_price
     ) 
     
 
-    return {"result": order_item}
+    return {"order": order, "order_item": order_item, "price": price}
 
 
 # Run the FastAPI application using uvicorn
