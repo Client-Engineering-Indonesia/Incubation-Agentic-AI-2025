@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Indonesia Custom Salesforce Skill",
+    "description": "API terkait Salesforce skill",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Indonesia Custom Salesforce Skill",
+      "description": "Operasi terkait Salesforce"
+    }
+  ],
+  "servers": [
+      {
+          "url": "https://bahasa-salesforce.1tzeky9wts20.us-south.codeengine.appdomain.cloud/",
+          "description": "Development server"
+      }
+  ],
+  "paths": {
+    "/get_all_accounts": {
+      "get": {
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mendapatkan daftar akun (accounts)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountsResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Mendapatkan daftar akun dari salesforce",
+        "operationId": "getAllAccounts",
+        "tags": ["Salesforce"]
+      }
+    },
+    "/price_books": {
+      "get": {
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mendapatkan daftar harga buku",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceBooksResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Mendapatkan daftar harga buku di salesforce",
+        "operationId": "getAllPriceBooks",
+        "tags": ["Salesforce"]
+      }
+    },
+    "/get_all_orders": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Mendapatkan daftar pesanan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrdersResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Mendapatkan daftar pesanan di salesforce",
+        "operationId": "getAllOrders",
+        "tags": ["Salesforce"]
+      }
+    },
+    "/create_order_item": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "account_id": {
+                        "type": "string",
+                        "example": "001IU00002oGjMKYA0"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "Draft"
+                      },
+                      "Pricebook2Id": {
+                        "type": "string",
+                        "example": "01sIU00000F3uJFYAZ"
+                      },
+                      "Product2Id": {
+                        "type": "string",
+                        "example": "01uIU00000AWHg5YAH"
+                      },
+                      "Quantity": {
+                        "type": "number",
+                        "example": "5"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Membuat pesanan di salesforce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderItemResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Membuat pesanan baru di salesforce",
+        "operationId": "createOrderItem",
+        "tags": ["salesforcev3"]
+      }
+    }
+  },
+  "components": {"securitySchemes": {
+          "basicAuth": {
+              "type": "http",
+              "scheme": "basic"
+          }
+      },
+    "schemas": {
+      "AccountsResponse": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "AccountId": { "type": "string" },
+                "AccountName": { "type": "string" },
+                "Type": { "type": "number" },
+                "Industry": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "PriceBooksResponse": {
+        "type": "object",
+        "properties": {
+          "price_books": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ProductId": { "type": "string" },
+                "ProductName": { "type": "string" },
+                "UnitPrice": { "type": "number" },
+                "Pricebook2Id": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "OrdersResponse": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "OrderId": { "type": "string" },
+                "OrderNumber": { "type": "string" },
+                "TotalAmount": { "type": "number" },
+                "CreatedDate": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "OrderItemResponse": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "success": {"type": "string"}
+            }
+          },
+          "order_item": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "success": {"type": "string"}
+            }
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "UnitPrice": {"type": "number"},
+              "Id": {"type": "string"},
+              "Name": {"type": "string"},
+              "Pricebook2Id": {"type": "string"},
+              "order_value": {"type": "number"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
