@@ -185,6 +185,9 @@ def create_product_in_order(request: OrderRequest):
         request.Pricebook2Id # by default 01sIU00000F3uJFYAZ
     )
 
+    del order['success']
+    del order['errors']
+
     print("order", order)
     
 
@@ -203,6 +206,9 @@ def create_product_in_order(request: OrderRequest):
         request.Quantity, 
         unit_price
     ) 
+
+    del order_item['success']
+    del order_item['errors']
     
 
     return {"order": order, "order_item": order_item, "price": price}
