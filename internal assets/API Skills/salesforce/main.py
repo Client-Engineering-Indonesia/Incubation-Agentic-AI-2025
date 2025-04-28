@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 
 #from custom_salesforce import get_all_price_book, get_all_orders, create_order, create_order_item
@@ -42,23 +43,29 @@ except:
     print("Ensure you have entered the correct credentials for Salesforce")
 
 #####SALESFORCE PRICEBOOK AND PRODUCT RELATION######
-unit_price_query = """SELECT Id, Name, UnitPrice, IsActive, PriceBook2Id FROM PricebookEntry WHERE UnitPrice>0.0 ORDER BY UnitPrice"""
+unit_price_query = """SELECT Id, Name, UnitPrice, IsActive, PriceBook2Id FROM PricebookEntry WHERE UnitPrice>0.0"""
 #unit_price_query = """SELECT Id, Name, IsActive, IsStandard FROM Pricebook2"""
 pb_query = """SELECT Id, Name from Pricebook2 WHERE Id = '{text}'"""
 
-def get_all_price_book_sf():
+def get_all_price_book_sf(params):
+    where_stmt = "WHERE UnitPrice>0 AND IsActive=true "
+    if len(params) > 0:
+        where_stmt += " AND "
+        where_stmt += " AND ".join(row["key"] + " = '" + row["value"] + "'" for row in params)
+    
+    unit_price_query = f"""SELECT Id, Name, UnitPrice, IsActive, PriceBook2Id FROM PricebookEntry {where_stmt} ORDER BY UnitPrice DESC LIMIT 10 """
+    print("query: ", unit_price_query)
+    price_book = sf.query(unit_price_query)
+
     result = sf.query(unit_price_query)
-    products = {}
 
-    for row in result["records"]:
-        #pb_query_replaced = pb_query.format(text=row["Pricebook2Id"])
-        #pb_result = sf.query(pb_query_replaced)
-        #pricebook_name = pb_result["records"][0]["Name"] if pb_result["records"] else "Unknown"
+    products = [{
+        "ProductId": row["Id"],
+        "ProductName": row["Name"],
+        "UnitPrice": row["UnitPrice"],
+        "Pricebook2Id": row["Pricebook2Id"],
+    } for row in result["records"]]
 
-        products.append({
-            "Product Name": row,
-            #"Pricebook Name": pricebook_name
-        })
     return products
 
 def get_price_by_id_sf(id):
@@ -93,9 +100,22 @@ def create_order_item_sf(order_id, Product2Id, Quantity, UnitPrice):
 
 #####SALESFORCE ORDER APIs######
 
-def get_all_accounts_sf():
-    account_query = """SELECT Id, Name, Type, Industry, CreatedDate FROM Account ORDER BY CreatedDate DESC LIMIT 100"""
+def get_all_accounts_sf(params):
+    where_stmt = ""
+    if len(params) > 0:
+        where_stmt += " WHERE "
+        where_stmt += " AND ".join(row["key"] + " = '" + row["value"] + "'" for row in params)
+    
+    account_query = f"""SELECT Id, Name, Type, Industry, CreatedDate FROM Account {where_stmt} LIMIT 10"""
+    print("query: ", account_query)
     account_result = sf.query(account_query)
+
+    account_result = [{
+        "AccountId": row["Id"],
+        "AccountName": row["Name"],
+        "Type": row["Type"],
+        "Industry": row["Industry"],
+    } for row in account_result["records"]]
 
     return account_result
 
@@ -128,8 +148,15 @@ def home():
 
 # Define a route to call the check_reorder_quantity function
 @app.get("/price_books")
-def fetch_price_books():
-    return {"price_books": get_all_price_book_sf()}
+def fetch_price_books(name: Optional[str] = None):
+    params = []
+    if name is not None:
+        params.append({
+            "key": "name",
+            "value": name
+        })
+
+    return {"price_books": get_all_price_book_sf(params)}
 
 # Define a route to call the check_reorder_quantity function
 @app.get("/get_all_orders")
@@ -140,8 +167,15 @@ def get_all_orders():
 
 
 @app.get("/get_all_accounts")
-def get_all_accounts():
-    return {"accounts": get_all_accounts_sf()}
+def get_all_accounts(name: Optional[str] = None):
+    params = []
+    if name is not None:
+        params.append({
+            "key": "name",
+            "value": name
+        })
+
+    return {"accounts": get_all_accounts_sf(params)}
 
 @app.post("/create_order_item/")
 def create_product_in_order(request: OrderRequest):
