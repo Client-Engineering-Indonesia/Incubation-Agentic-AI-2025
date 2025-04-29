@@ -1,6 +1,6 @@
 API endpoint for workshop in Indonesia:
 Reorder Quantity -> https://bahasa-reorder-quantity.1tzeky9wts20.us-south.codeengine.appdomain.cloud/
 Time Series AutoAI -> https://bahasa-time-series.1tzeky9wts20.us-south.codeengine.appdomain.cloud/
-Supplier Research -> https://bahasa-agent-supplier-research.1tzeky9wts20.us-south.codeengine.appdomain.cloud/chat/completions
+Supplier Research -> https://bahasa-agent-research-v3.1tzeky9wts20.us-south.codeengine.appdomain.cloud/chat/completions
 Salesforce -> https://bahasa-salesforce.1tzeky9wts20.us-south.codeengine.appdomain.cloud/
 Tex2SQL CrewAI -> https://bahasa-text2sql-crewai.1tzeky9wts20.us-south.codeengine.appdomain.cloud/
