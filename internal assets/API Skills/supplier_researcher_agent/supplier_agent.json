@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Supplier Research Agent API Skill",
-        "description": "Supplier Research Agent API Skill",
+        "title": "Agen Riset Pemasok",
+        "description": "Agen untuk melakukan riset pemasok",
         "version": "0.1.0",
         "x-ibm-skill-type": "imported",
         "x-ibm-skill-subtype": "public",
@@ -15,13 +15,13 @@
     ],
     "servers": [
         {
-          "url": "https://sgentlab-sf.1soswfjkmeox.us-south.codeengine.appdomain.cloud"
+          "url": "https://bahasa-supplier-researcher.1tzeky9wts20.us-south.codeengine.appdomain.cloud"
         }
     ],
     "paths": {
         "/researchsuppliers/": {
             "get": {
-                "summary": "Product Procurement Supplier Research",
+                "summary": "Riset Pemasok",
                 "operationId": "supplierresearch_researchsuppliersget",
                 "parameters": [
                     {
@@ -44,8 +44,8 @@
                                     "properties": {
                                         "Agent Response": {
                                             "type": "string",
-                                            "description": "The AI model's response rating the suppliers.",
-                                            "example": "Supplier A is the best choice based on pricing and procurement rules. Supplier B is less favorable due to high pricing."
+                                            "description": "Peringkat respons model AI terhadap pemasok.",
+                                            "example": "Pemasok A merupakan pilihan terbaik berdasarkan harga dan aturan pengadaan. Pemasok B kurang disukai karena harganya yang tinggi."
                                         }
                                     }
                                 }
