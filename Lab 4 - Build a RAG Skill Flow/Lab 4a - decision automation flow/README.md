@@ -6,7 +6,12 @@ Another integral part of watsonx orchestrate is automating workflow. Besides tha
 
 For this lab, we will be creating an automation workflow which will allow us to set some conditions to place order. The conditions can be for example if an order meets the minimum order requirement or budget requirement. Different condition will result in different results.
 
-### Important Commands
+### Pre-requisites
+1. Download this file https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025/blob/main/Lab%204%20-%20Build%20a%20RAG%20Skill%20Flow/Reorder_automation_demo.zip
+2. Unzip into your local device
+3. Change folder name to [Your name]_Otomasi_Pemesanan
+4. Run command below
+
 ```code
 zip -r [Your name]_Otomasi_Pemesanan.zip [Your name]_Otomasi_Pemesanan/
 ```
