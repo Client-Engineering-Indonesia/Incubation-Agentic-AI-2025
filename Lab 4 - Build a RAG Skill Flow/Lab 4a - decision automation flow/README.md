@@ -10,7 +10,10 @@ For this lab, we will be creating an automation workflow which will allow us to 
 1. Download this file https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025/blob/main/Lab%204%20-%20Build%20a%20RAG%20Skill%20Flow/Reorder_automation_demo.zip
 2. Unzip into your local device
 3. Change folder name to [Your name]_Otomasi_Pemesanan
-4. Run command below
+4. Zip the folder
+   
+#### Command for Mac user
+- Run command below for Mac user
 
 ```code
 zip -r [Your name]_Otomasi_Pemesanan.zip [Your name]_Otomasi_Pemesanan/
