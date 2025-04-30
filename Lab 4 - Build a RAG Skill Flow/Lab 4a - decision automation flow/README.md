@@ -6,6 +6,11 @@ Another integral part of watsonx orchestrate is automating workflow. Besides tha
 
 For this lab, we will be creating an automation workflow which will allow us to set some conditions to place order. The conditions can be for example if an order meets the minimum order requirement or budget requirement. Different condition will result in different results.
 
+### Important Commands
+```code
+zip -r [Your name]_Otomasi_Pemesanan.zip [Your name]_Otomasi_Pemesanan/
+```
+
 ## Create project
 
 1. Go to Skill Studio from left bar
