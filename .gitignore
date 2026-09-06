@@ -177,4 +177,5 @@ creds/*
 
 .DS_Store
 *.pptx
-# *.ipynb
+# *.ipynb*.pyc
+*.pyo
